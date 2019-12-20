@@ -1,0 +1,70 @@
+{
+    "circleTower": {
+        "boostDescription": "Increase Damage and Attack Speed.",
+        "effectDescription": "Support: Supports towers in this tower's range, increasing their base range.",
+        "tooltip": [
+            "Circle Tower",
+            "Shoots a circle that hits sparks.",
+            "Power:        ${1}",
+            "Base Range:   ${2}",
+            "Reload Time:  ${3}",
+            "Tower Cost:   ${4}",
+            "Upgrade Cost: ${5}"
+        ]        
+    },
+    "multiShotTower": {
+        "boostDescription": "Increase Damage and Attack Speed.",
+        "effectDescription": "Poison: Poisoned sparks take damage over time.",
+        "tooltip": [
+            "Multishot Tower",
+            "Shoots multiple ALL sparks within its range",
+            "Power:        ${1}",
+            "Base Range:   ${2}",
+            "Reload Time:  ${3}",
+            "Tower Cost:   ${4}",
+            "Upgrade Cost: ${5}"
+        ]
+    },
+    "pierceTower": {
+        "boostDescription": "Increase Range and Attack Speed.",
+        "effectDescription": "Slow: Slowed sparks move slower.",
+        "tooltip": [
+            "Pierce Tower",
+            "Shoots a bullet in a straight line that continues moving until maximum range",
+            "Power:        ${1}",
+            "Base Range:   ${2}",
+            "Reload Time:  ${3}",
+            "Tower Cost:   ${4}",
+            "Upgrade Cost: ${5}"
+        ]
+
+    },
+    "singleShotTower": {
+        "boostDescription": "Increase Damage and Range.",
+        "effectDescription": "Bomb: Bombed sparks deal damage to other marked sparks around it when it dies.",
+        "tooltip": [
+            "Singleshot Tower",
+            "Shoots a spark on short range with normal damage",
+            "Power:        ${1}",
+            "Base Range:   ${2}",
+            "Reload Time:  ${3}",
+            "Tower Cost:   ${4}",
+            "Upgrade Cost: ${5}"
+        ]
+    },
+    "sniperTower": {
+        "boostDescription": "Increase Damage and Attack Speed.",
+        "effectDescription": "Weaken: Weakened sparks take additional damage.",
+        "tooltip": [
+            "Sniper Tower",
+            "Snipes a spark from long range with big damage",
+            "Power:        ${1}",
+            "Base Range:   ${2}",
+            "Reload Time:  ${3}",
+            "Tower Cost:   ${4}",
+            "Upgrade Cost: ${5}"
+        ]
+    },
+    "shootingMode": "Change the shooting mode of the tower",
+    "upgradeCost": "Upgrade Cost: ${1}"
+}

@@ -1,0 +1,19 @@
+{
+  "haskellTargetURL": "http://science-vs159.science.uu.nl",
+  "haskellPort"  : 8080,
+  "haskellMethod": "compare",
+  "haskellTimeout": 5000,
+  
+  "databaseDriver": "com.mysql.jdbc.Driver",
+  "databaseUsername": "root",
+  "databasePassword": "goodasspassword",
+  "databaseURLPrefix": "jdbc:mysql:\/\/",
+  "databaseHostURL": "localhost",
+  "databaseName": "impress_testing_gameserver",
+  "databaseUseSSL": false,
+  
+  "connectionPort": 2000,
+  
+  "maxSessionCreatedDifference": 2147483647,
+  "sessionWaitTime": 5000
+}

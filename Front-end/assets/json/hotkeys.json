@@ -1,0 +1,36 @@
+{
+    "playing": {
+        "removeObject1": "R",
+        "removeObject2": "DELETE",
+        "cancelPlacing": "ESC",
+
+        "effectUpgrade": "E",
+        "boostUpgrade": "B",
+
+        "nextPlacingTower": "Q",
+
+        "shootingModeFirst": "F",
+        "shootingModeLast": "L",
+        "shootingModeStrongest": "S",
+        "shootingModeWeakest": "W",
+        "shootingModeClosest": "C",
+	"sliderNext": "D",
+	"sliderPrevious": "A"
+    },
+    "blockBuilding": {
+        "moveUp": "UP",
+        "moveDown": "DOWN",
+        "moveLeft": "LEFT",
+        "moveRight": "RIGHT",
+
+        "cancelPlacingAndLeave": "ESC",
+
+        "removeObject1": "R",
+        "removeObject2": "DELETE",
+
+        "normalize": "N"
+    },
+    "tutorial": {
+		"next": "SPACEBAR"
+    }
+}

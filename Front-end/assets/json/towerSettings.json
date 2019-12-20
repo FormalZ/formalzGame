@@ -1,0 +1,125 @@
+{
+    "Singleshot tower; Default":
+    {
+        "power": 5,
+        "range": 80,
+        "reloadTime": 0.5,
+        "towerCost": 300,
+        "upgradeCost": 200
+    },
+    "Singleshot tower; Boost upgrade":
+    {
+        "power": 6,
+        "range": 100,
+        "reloadTime": 0.5,
+        "towerCost": 300,
+        "upgradeCost": 200
+    },
+    "Singleshot tower; Effect upgrade":
+    {
+        "power": 3,
+        "range": 80,
+        "reloadTime": 0.5,
+        "towerCost": 300,
+        "upgradeCost": 200
+    },
+    "Multishot tower; Default":
+    {
+        "power": 2,
+        "range": 80,
+        "reloadTime": 0.7,
+        "towerCost": 400,
+        "upgradeCost": 200
+    },
+    "Multishot tower; Boost upgrade":
+    {
+        "power": 2.5,
+        "range": 80,
+        "reloadTime": 0.6,
+        "towerCost": 400,
+        "upgradeCost": 200
+    },
+    "Multishot tower; Effect upgrade":
+    {
+        "power": 1,
+        "range": 80,
+        "reloadTime": 0.7,
+        "towerCost": 400,
+        "upgradeCost": 200
+    },
+    "Circle tower; Default":
+    {
+        "power": 3,
+        "range": 60,
+        "reloadTime": 0.8,
+        "towerCost": 400,
+        "upgradeCost": 200,
+        "bulletAmount": 8
+    },
+    "Circle tower; Boost upgrade":
+    {
+        "power": 3,
+        "range": 60,
+        "reloadTime": 0.6,
+        "towerCost": 400,
+        "upgradeCost": 200,
+        "bulletAmount": 12
+    },
+    "Circle tower; Effect upgrade":
+    {
+        "power": 3,
+        "range": 60,
+        "reloadTime": 0.8,
+        "towerCost": 400,
+        "upgradeCost": 200,
+        "bulletAmount": 8
+    },
+    "Pierce tower; Default":
+    {
+        "power": 5,
+        "range": 140,
+        "reloadTime": 1.0,
+        "towerCost": 500,
+        "upgradeCost": 200
+    },
+    "Pierce tower; Boost upgrade":
+    {
+        "power": 5,
+        "range": 180,
+        "reloadTime": 0.9,
+        "towerCost": 500,
+        "upgradeCost": 200
+    },
+    "Pierce tower; Effect upgrade":
+    {
+        "power": 5,
+        "range": 140,
+        "reloadTime": 1.5,
+        "towerCost": 500,
+        "upgradeCost": 200
+    },
+    "Sniper tower; Default":
+    {
+        "power": 20,
+        "range": 500,
+        "reloadTime": 5.0,
+        "towerCost": 1000,
+        "upgradeCost": 200
+    },
+    "Sniper tower; Boost upgrade":
+    {
+        "power": 22,
+        "range": 500,
+        "reloadTime": 4.75,
+        "towerCost": 1000,
+        "upgradeCost": 200
+    },
+    "Sniper tower; Effect upgrade":
+    {
+        "power": 15,
+        "range": 500,
+        "reloadTime": 6.0,
+        "towerCost": 1000,
+        "upgradeCost": 200
+    }
+}

@@ -1,0 +1,8 @@
+path: ./
+jobs: 10
+cache: vendor/overtrue/phplint/bin/phplint.cache
+extensions:
+  - php
+exclude:
+  - vendor
+  - storage

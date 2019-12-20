@@ -1,0 +1,8 @@
+connection
+data
+gamelogic.gamestate
+gamelogic.gametasks
+haskellapi
+haskellapi.jsonrunnables
+logger
+utils

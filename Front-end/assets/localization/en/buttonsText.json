@@ -1,0 +1,18 @@
+{
+    "uiGameTask": { 
+        "startWave": "Next Wave",
+        "boostTower": "Boost",
+        "effectTower": "Effect",
+        "shootingModeTower": "Mode"
+    },
+    "menu": {
+        "confirm": "Confirm",
+        "cancel": "Cancel" 
+    },
+    "blockBuildingScreen": {
+        "previous": "previous",
+        "next": "next",
+        "normalize": "normalize",
+        "deleteBlock" : "Sell block"
+    }
+}

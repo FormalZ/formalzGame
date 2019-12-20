@@ -1,0 +1,27 @@
+{
+    "questionGameTask": {
+        "niceFeedbackPrefix": "What happens if",
+        "niceFeedbackSuffix": "the variable ${1} has the value ${2}"
+    },
+    "uiGameTask": {
+        "preconditionText": "Pre",
+        "postconditionText": "Post",
+        "preconditionFeedback": "Pre-Feedback",
+        "postconditionFeedback": "Post-Feedback",
+        "score": "points",
+        "description": "Description",
+        "betweenWaveTime": "Time before next wave"
+    },
+    "gameOver": {
+        "gameOver": "GAME OVER",
+        "returnToMenu": "Click to return to Menu"
+    },
+    "menu": {
+        "debugStart": "Game is in DEBUG mode. Do you want to continue without a connection?"
+    },
+    "hints": {
+        "hints": "Hints",
+        "noHint": "No hints currently available. You've used all necessary blocks before.",
+        "nextHint": "Next Hint"
+    }
+}

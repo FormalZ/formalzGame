@@ -1,0 +1,22 @@
+Wed Apr 17 14:47:07 CEST 2019 ; index 0 ; Query send : {"sourceA": "A","sourceB": "B"}
+
+Wed Apr 17 14:47:07 CEST 2019 ; index 0 ; Response received : {"model":{"b:real":5.031056532842699,"a:real":1.6374821786024496},"err":null,"responseType":"NotEquiv","feedback":{"pre":[false,false,false,false],"post":[false,false,false,false]}}
+
+Wed Apr 17 14:47:07 CEST 2019 ; index 1 ; Connection failed with query : {"sourceA": "A","sourceB": "B"}
+
+Wed Apr 17 14:47:07 CEST 2019 ; index 2 ; Query send : {"sourceA": "public static float real1_1(float a) {\npre(a >= (2 - 1 + 1));\na += a;\npost(a >= (4 - 3 + 3));}","sourceB": "public static float real1_1(float a) {\npre(a >= 2));\na += a;\npost(a >= 4);}"}
+
+Wed Apr 17 14:47:07 CEST 2019 ; index 3 ; Query send : {"sourceA": "public static float real1_1(float a, float b) {\npre(a >= 1 && b > 4);\na += a;\npost(a > 4);}","sourceB": "public static float real1_1(float a, float b) {\npre(a >= 2 && b >= 4);\na += a;\npost(a >= 4);}"}
+
+Wed Apr 17 14:47:07 CEST 2019 ; index 3 ; Response received : {"model":{"a":1.5592305117529486,"b":8.798817163515064},"err":null,"responseType":"NotEquiv","feedback":{"pre":[true,true,false,true],"post":[true,false,false,true]}}
+
+Wed Apr 17 14:47:07 CEST 2019 ; index 4 ; Query send : {"sourceA": "A","sourceB": "B"}
+
+Wed Apr 17 14:47:07 CEST 2019 ; index 4 ; Connection failed with query : {"sourceA": "A","sourceB": "B"}
+
+Wed Apr 17 14:47:07 CEST 2019 ; index 5 ; Query send : {"sourceA": "public static float real1_1(float a) {\npre(a >= (2 - 1 + 1));\na += a;\npost(a >= (4 - 3 + 3));}","sourceB": "public static float real1_1(float a) {\npre(a >= 2);\na += a;\npost(a >= 4);}"}
+
+Wed Apr 17 14:47:07 CEST 2019 ; index 5 ; Response received : {"model":null,"err":null,"responseType":"Equiv","feedback":null}
+
+Wed Apr 17 14:47:07 CEST 2019 ; index 6 ; Query send : {"sourceA": "A","sourceB": "B"}
+

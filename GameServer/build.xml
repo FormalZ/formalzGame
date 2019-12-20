@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="BuildServer" name="GameServer">
+    <property environment="env"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <property name="mainFolder" location="," />
+    <path id="GameServer.classpath">
+        <pathelement location="."/> <!-- adding this to the scope so that tests can find the config and js files -->
+        <pathelement location="bin"/>
+        <pathelement location="lib/gson-2.6.2.jar"/>
+        <pathelement location="lib/hamcrest-core-1.3.jar"/>
+        <pathelement location="lib/junit-4.12.jar"/>
+        <pathelement location="lib/mysql-connector-java-5.1.45-bin.jar"/>
+        <pathelement location="lib/Java-WebSocket-1.3.7.jar"/>
+        <pathelement location="lib/byte-buddy-1.6.14.jar"/>
+        <pathelement location="lib/byte-buddy-agent-1.6.14.jar"/>
+        <pathelement location="lib/cglib-nodep-2.2.2.jar"/>
+        <pathelement location="lib/javassist-3.21.0-GA.jar"/>
+        <pathelement location="lib/mockito-core-2.8.9.jar"/>
+        <pathelement location="lib/objenesis-2.5.jar"/>
+        <pathelement location="lib/commons-io-2.6-javadoc.jar"/>
+    	<pathelement location="lib/nashorn.jar"/>
+        <pathelement location="lib/formalz-example-0.0.1-SNAPSHOT-jar-with-dependencies.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="test">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <src path="test"/>
+        	<src path="repoAdder"/>
+            <classpath refid="GameServer.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    
+	<target name="RunServer">
+        <java classname="connection.Main" failonerror="true" fork="yes">
+            <classpath refid="GameServer.classpath"/>
+        </java>
+    </target>
+	
+	<target name="AddRepoProblems">
+        <java classname="repo.repoMain" failonerror="true" fork="yes">
+            <classpath refid="GameServer.classpath"/>
+        </java>
+    </target>
+	
+    <target depends="build" name="BuildServer">
+        <jar destfile="./server.jar" basedir="./bin">
+        	<manifest>
+        		<attribute name="Class-Path" value="lib/gson-2.6.2.jar lib/hamcrest-core-1.3.jar lib/junit-4.12.jar lib/mysql-connector-java-5.1.45-bin.jar lib/Java-WebSocket-1.3.7.jar lib/byte-buddy-1.6.14.jar lib/byte-buddy-agent-1.6.14.jar lib/cglib-nodep-2.2.2.jar lib/javassist-3.21.0-GA.jar lib/mockito-core-2.8.9.jar lib/objenesis-2.5.jar lib/commons-io-2.6-javadoc.jar lib/nashorn.jar lib/formalz-example-0.0.1-SNAPSHOT-jar-with-dependencies.jar" />
+        		<attribute name="Main-Class" value="connection.Main"/>	
+        	</manifest>
+        </jar>
+    </target>
+	
+    <target name="RunAllTests">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="data.AllTests" todir="${junit.output.dir}"/>
+            <classpath refid="GameServer.classpath"/>
+        </junit>
+    </target>
+	
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+	
+    <target name="RunIntegrationTests">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="integration._AllIntegrationTests" todir="${junit.output.dir}"/>
+            <classpath refid="GameServer.classpath"/>
+        </junit>
+    </target>
+	
+    <target name="fillDB">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="fillDB._fillDBForTesting" todir="${junit.output.dir}"/>
+            <classpath refid="GameServer.classpath"/>
+        </junit>
+    </target>
+</project>

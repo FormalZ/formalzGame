@@ -1,0 +1,51 @@
+{
+    "Welcome": "Welcome to the FormalZ tutorial. Press the spacebar or click anywhere to continue to the next message. In this tutorial the game is non-interactive, so you can't click anything. The buttons in the top-right are the only exception to this.",
+	"Purpose": "This is a tower defence game where you have to write formal specifications and deflect waves of incoming entities, which are called sparks. You can do this by writing specifications and building towers to prevent the bad sparks from reaching the end.",
+	
+	"Resources": "First of all, let's take a look at the resources that you have.",
+	"Money": "This is the amount of money you have. Money is required for things such as writing code and building and upgrading towers.",
+	"Pause": "This is the pause timer. When you go into the block building mode the game will pause for a little while so you have some time to fix any problems with your code in a safe environment. This pause period is limited though, so be careful! The pause timer will refill over time while the game is unpaused.",
+	"Health": "This is your health. Keep yourself alive by protecting yourself from sparks!",
+	"Score": "And finally, your score. The score provides an indication of how well you're doing in the game. This is what decides your ranking in the high-scores on the website.",
+	
+	"Description": "The game works as follows: You get a description of a problem. Then you need to provide a correct formal specification of this problem, using pre- and postconditions. This description can be viewed by clicking on this slider. Arrow keys will apear on the description slider if the description is bigger than the slider area, with which you can scroll through the description",
+	"Scanners": "These conditions can be written in two places: The pre- and post-scanners.",
+	"EndUI": "Enough talk: it's time to write formal specifications! To construct the formal specifications for the problem that the description describes, you can click on one of the two scanners located on the path.",
+	
+	"BlockBuilding": "This is the blockbuilding screen. Here you can compose your formal specification by constructing a tree consisting of blocks. Each block represents a node in the expression that you're trying to make. We will now look at how we can construct the correct precondition for our current problem",
+	"BeginBlock": "This is a begin block. Begin blocks form the entry point into the tree of blocks. You can place as many of them as you like and they are always free.",
+	"Relational": "We have now added a relational block. We can use this block to form an expression using two extra blocks.",
+	"VarAndConst": "We have now added a variable and constant block. We now have all the blocks we need to form the condition 'a >= 0'.",
+	"Connecting": "You can compose the tree by connecting the blocks. You can form these connections by clicking on a connector and then dragging towards another connector on a different block.",
+	"Normalizing": "If your blockbuilding tree becomes a bit messy or when you lose oversight, you can reformat the tree to a normalized state by pressing the normalize button in the top-right corner.",
+	"DeletingBlocks": "You can delete a block by pressing the 'Sell block' button after selecting it by clicking on it.",
+	"CancellingBlocks": "You can cancel block placement with the ESC key.",
+	
+	"PreCondition": "When you click on this button, you can see the precondition that you have constructed in the block building screen. Feedback on your precondition is also available here.",
+	"PostCondition": "When you click on this button you can see the postcondition that you have constructed in the block building screen. Feedback on your postcondition is also available here.",
+	
+	"Sparks": "Now, onto the entities that you will encounter: the sparks!",
+	"GoodSpark": "This is a good spark. You shouldn't shoot these, so try not to mark them. If your pre- and postconditions are correctly formulated, these will not get marked and thus not get shot.",
+	"BadSpark": "This is a bad spark. You should shoot these, so try to mark them.",
+	"VirusSpark": "This is a virus spark, which is a special bad spark. Virus sparks have only a very slim chance of spawning, but they can disable towers that you have built. Watch out for them!",
+	"FireWallSpark": "This is a firewall spark, another special kind of bad spark. They have only a very slim chance of spawning, but they can protect other sparks from being hurt by your towers. Be sure to deal with them quickly!",
+	
+	"PrepareWave": "Now that that's out of the way, we should prepare ourselves for the upcoming wave.",
+	
+	"TowerMenu": "This menu contains all available towers. You can build a tower by dragging it from this menu.",
+	"SingleShotTower": "This is a single-shot tower, a tower that shoots at a single spark.",
+	"TowerStats": "Tower stats and upgrades of the currently selected tower are shown here.",
+	"RangeStat": "This is the tower's range. A tower can only shoot sparks that are within its range. This is also visualized by the circle around the tower.",
+	"PowerStat": "This is the tower's power. Its power is the amount of damage that it deals to a spark per shot.",
+	"SpeedStat": "This is the tower's speed. Its speed dictates how fast it can fire two consequtive shots.",
+	"BoostButton": "This is the boost Upgrade button, which increases some of the base stats of a tower.",
+	"EffectButton": "This is the effect upgrade button, which lets the tower apply a certain effect. These effects are unique for each tower.",
+	"ModeButton": "This is the shooting mode button, which allows you to switch between various targeting modes. A tower can target the first spark, the last Spark, the spark with the most amount of health, the spark with the least amount of health and the closest spark. A tower can only target sparks that are within its range.",
+	"MultiShotTower": "This is a multi-shot tower, a tower that shoots at all sparks within its range at the same time.",
+	"TowerStrategy": "Each of the towers has unique strengths and weaknesses, you should experiment with them to find out what kind of towers are required based on different situations that arise in the game.",
+	
+	"NextWave": "Let's see what happens during a wave. You can press the 'Next Wave' button to start a wave.",
+	"Wave": "This is what a wave looks like. Observe that because our precondition is correct, all good sparks remain unmarked while all bad sparks become marked when passing the precondition scanner. However, this is not the case for the postcondition, as it's currently not filled in.",
+
+	"End": "This is the end of the tutorial. Good luck with your code-writing!"
+}

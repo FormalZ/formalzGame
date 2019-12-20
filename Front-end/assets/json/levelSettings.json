@@ -1,0 +1,18 @@
+{
+    "fullHealth": 50,
+    "startMoney": 5000,
+
+    "maxPauseTime": 20000,
+    "maxBetweenWavesTime": 180000,
+
+    "sparkHealthLoss": 2,
+    "sparkMoneyGain": 25,
+
+    "challengeClearGold": 1000,
+    "challengeClearHealth": 10,
+
+    "scoreFunction": 1,
+
+    "refundBlockModifier": 0.8,
+    "refundTowerModifier": 0.8
+}

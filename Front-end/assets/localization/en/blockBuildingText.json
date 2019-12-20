@@ -1,0 +1,223 @@
+{
+    "arithmeticBlock": {
+        "tooltip": [
+            "Arithmetic Block",
+            "Performs an arithmetic operation on its two operands.",
+            "Inputs:",
+            "   Left: left side of the arithmetic expression.",
+            "   type: real",
+            "   Right: right side of the arithmetic expression.",
+            "   type: real",
+            "Outputs:",
+ 	    "   Result of the arithmetic expression",
+            "   type: real"
+        ]
+    },
+    "arrayIndexBlock": {
+        "tooltip": [
+            "Array Index Block",
+            "Indexes an array at a given index.",
+            "Inputs:",
+            "   Left: The array.",
+            "   type: array",
+            "   Right: The index.",
+            "   type: real",
+            "Outputs:",
+	    "   The value in the array at the given index",
+            "   type: ${1}"
+        ]
+    },
+    "beginBlock": {
+        "tooltip": [
+            "Begin Block",
+            "Entry point into the blockbuilding tree.",
+            "Inputs:",
+            "   Bottom: Result of the condition.",
+            "   type: boolean",
+            "Outputs:",
+            "   None"
+        ]
+    },
+    "booleanBlock": {
+        "tooltip": [
+            "Boolean Block",
+            "Represents a constant boolean value.",
+            "Inputs:",
+            "   None.",
+            "Outputs:",
+            "   The constant boolean value.",
+            "   type: boolean"
+        ]
+    },
+    "collapsedBlock": {
+        "tooltip": [
+            "Collapsed block",
+            "Represents a subtree."
+        ]
+    },
+    "equalityBlock": {
+        "tooltip": [
+            "Equality Block",
+            "Checks the equality (or inequality) of two primitive operands.",
+            "Inputs:",
+            "   Left: Left side of the equals sign",
+            "   Right: Right side of the equals sign",
+            "   The left and right can be of any type as long as they are the same.",
+            "Outputs:",
+	    "   Boolean that represents the equality of the operands.",
+            "   type: boolean"
+        ]
+    },
+    "implicationBlock": {
+        "tooltip": [
+            "Implication Block",
+            "Logical implication between two propositions.",
+            "Inputs:",
+            "   Left: Antecedent of the implication",
+            "   type: boolean",
+            "   Right: Consequent of the implication",
+            "   type: boolean",
+            "Outputs:",
+	    "   Logical output is equivalent to ((not left) or right)",
+            "   type: boolean"
+        ]
+    },
+    "lengthBlock": {
+        "tooltip": [
+            "Length Block",
+            "Gets the length of an array block.",
+            "Inputs:",
+            "   Bottom:  The array.",
+            "   type: array",
+            "Outputs:",
+	    "   Length of the array",
+            "   type: real"
+        ]
+    },
+    "logicOperator": {
+        "tooltip": [
+            "Logic Operator Block",
+            "Logical binary connective.",
+            "Inputs:",
+            "   Left: Left side of the connective",
+            "   type: boolean",
+            "   Right: Right side of the connective",
+            "   type: boolean",
+            "Outputs:",
+	    "   Result of the logical connective",
+            "   type: boolean"
+        ]
+    },
+    "notBlock": {
+        "tooltip": [
+            "Not Block",
+            "Logical unary connective that inverts a boolean.",
+            "Inputs:",
+            "   Bottom: The proposition to be inverted.",
+            "   type: boolean",
+            "Outputs:",
+	    "   The inverse of the proposition",
+            "   type: boolean"
+        ]
+    },
+    "nullBlock": {
+        "tooltip": [
+            "Null Block",
+            "Represents a constant null pointer.",
+            "Inputs:",
+            "   None.",
+            "Outputs:",
+	    "   Null pointer",
+            "   type: array"
+        ]
+    },
+    "quantifierBlock": {
+        "tooltip": [
+            "Quantifier Block",
+            "Logical quantifier over an array.",
+            "Inputs:",
+            "   Left: The array.",
+            "   type: array",
+            "   Bottom: The variable that represents the index in the array",
+            "   type: real",
+            "   Right: The predicate that the quantifier checks, based on each index in the array.",
+            "   type: boolean",
+            "Outputs:",
+	    "   Result of the predicate, quantified over the array",
+            "   type: boolean"
+        ]
+    },
+    "quantifierRangeBlock": {
+        "tooltip": [
+            "Quantifier Range Block",
+            "Logical quantifier over a limited range of an array.",
+            "Inputs:",
+            "   Left: The array.",
+            "   type: array",
+            "      BottomLeft: Start of the range.",
+            "      type: real",
+            "      Bottom: End of the range.",
+            "      type: real",
+            "      BottomRight: The variable that represents the index in the array",
+            "      type: real",
+            "   Right: The predicate that the quantifier checks, based on each index in the array.",
+            "   type: boolean",
+            "Outputs:",
+	    "   Result of the predicate, quantified over the given range of the array",
+            "   type: boolean"
+        ]
+    },
+    "realBlock": {
+        "tooltip": [
+            "Real Block",
+            "Represents a constant real number.",
+            "Inputs:",
+            "   None.",
+            "Outputs:",
+	    "  The real number value",
+            "   type: real"
+        ]
+    },
+    "relationalBlock": {
+        "tooltip": [
+            "Relational Block",
+            "Compares two real numbers.",
+            "Inputs:",
+            "   Left: Left side of the comparison",
+            "   type: real",
+            "   Right: Right side of the comparison",
+            "   type: real",
+            "Outputs:",
+	    "   Result of the comparison",
+            "   type: boolean"
+        ]
+    },
+    "variableBlock": {
+        "tooltip": [
+            "Variable Block",
+            "Represents a variable.",
+            "Inputs:",
+            "   None.",
+            "Outputs:",
+	    "   The value of the variable",
+            "   type: ${1}"
+        ]
+    },
+    "withBlock": {
+        "tooltip": [
+            "With Block",
+            "Can be used for variable renaming.",
+            "This is especially useful in combination with array indices.",
+            "Inputs:",
+            "   Left: The variable to be renamed.",
+            "   type: ${1}",
+            "   Bottom: The the new variable name",
+            "   type: ${2}",
+            "   Right: Predicate in which the newly introduced variable can be used.",
+            "   type: boolean",
+            "Outputs:",
+	    "   The result of the predicate",
+            "   type: boolean"
+        ]
+    }
+}

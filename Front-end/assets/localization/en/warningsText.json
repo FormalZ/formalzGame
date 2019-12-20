@@ -1,0 +1,27 @@
+{
+    "uiGameTask": {
+        "descriptionChanged": "The description has changed",
+        "hintChanged": "You received a new hint",
+        "feedbackChanged": "You received new feedback"
+    },
+    "errorState": {
+        "errorMessage": "An error was encountered!\n${1}\nClick to return to Menu",
+        "unknownError": "Unknown Error"
+    },
+    "menu": {
+        "noConnection": "Connection is not ready yet or has been cancelled"
+    },
+    "blockBuildingGameTask": {
+        "invalidBlockType": "Unknown type '${1}' cannot be converted to BlockType!"
+    },
+    "blockBuildingScreen": {
+        "syntaxTokenReceived": "A Syntax token was received from the back-end. Sending a Syntax token is redundant.",
+        "invalidToken": "Invalid token '${1}' encountered!"
+    },
+    "variableBlock": {
+        "notReceivedType": "The type of variable ${1} was not received from the back-end!"
+    },
+    "arithmeticBlock": {
+        "noPrecedence": "Precedence not defined for operator ${1}"
+    }
+}

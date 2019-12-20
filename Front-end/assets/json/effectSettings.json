@@ -1,0 +1,44 @@
+{
+    "Tower Effects": {},
+    "Bomb":
+    {
+        "duration": 10000,
+        "explosionDamage": 5,
+        "explosionRange": 3
+    },
+    "Poison":
+    {
+        "applyInterval": 500,
+        "applyCount": 5,
+        "damagePerTick": 1
+    },
+    "Slow":
+    {
+        "duration": 3000,
+        "slowMultiplier": 0.5
+    },
+    "Spin":
+    {
+        "duration": 500
+    },
+    "Support":
+    {
+        "duration": 100,
+        "rangeMultiplier": 1.2
+    },
+    "Weaken":
+    { 
+        "duration": 2000,
+        "damageMultiplier": 1.5
+    },
+
+    "Spark Effects": {},
+    "Protected":
+    {
+    },
+    "Virus":
+    {
+        "cooldown": 5000,
+        "duration": 5000
+    }
+}

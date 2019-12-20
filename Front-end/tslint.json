@@ -1,0 +1,32 @@
+{
+    "extends": "./node_modules/phaser-ce/typescript/tslint.json",
+    "linterOptions": {
+        "exclude": [
+            "./src/assets.ts",
+            "./assets",
+            "./assets_raw",
+            "./node_modules",
+            "./scripts",
+            "./test/unit"
+
+        ]
+    },
+    "rules": {
+        "quotemark": [
+            true,
+            "single"
+        ],
+        "typedef": [
+            true, 
+            "call-signature", 
+            "parameter", 
+            "variable-declaration",
+            "member-variable-declaration"
+        ], 
+        "max-line-length": 
+        [
+            true, 
+            140
+        ]
+    }
+}
