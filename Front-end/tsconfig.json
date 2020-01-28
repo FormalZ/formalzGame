@@ -23,6 +23,7 @@
   ],
   "files": [
     "./src/globals.d.ts",
+    "./src/formalz.d.ts",
     "./src/app.ts",
     "./node_modules/phaser-ce/typescript/phaser.comments.d.ts"
   ]

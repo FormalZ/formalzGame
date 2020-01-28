@@ -9,5 +9,6 @@ at Utrecht University within the Software and Game project course (2018)
 </form>
 @endsection
 @section('pagescript')
+<script type="text/javascript" src="/js/formalz-config.js"></script>
 <script type="text/javascript" src="/js/game.min.js"></script>
 @endsection

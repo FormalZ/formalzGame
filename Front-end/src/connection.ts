@@ -32,9 +32,11 @@ export default class Connection {
         const ipLocal: string = settings['ipAddressLocal'];
         const server: number = settings['server'];
 
-        const ipAddress: string = [ip, ipLocal][server];
-        const port: number = settings['port'];
-        const url: string = 'wss://' + ipAddress + ':' + port;
+        const ipAddress: string = FORMALZ_GAMESERVER_HOST || [ip, ipLocal][server];
+        const port: number = FORMALZ_GAMESERVER_PORT || settings['port'];
+        const protocol: string = FORMALZ_GAMESERVER_PROTOCOL || settings['protocol'];
+        const path: string = FORMALZ_GAMESERVER_PATH || settings['path'];
+        const url: string = protocol + '://' + ipAddress + ':' + port + path;
         const socket: WebSocket = new WebSocket(url);
 
         this.connection = new Connection(socket, game);
