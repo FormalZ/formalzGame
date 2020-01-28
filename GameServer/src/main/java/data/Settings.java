@@ -41,6 +41,8 @@ public class Settings
     private long maxSessionCreatedDifference;
 
     private int sessionWaitTime;
+    
+		private boolean tlsEnabled;
 
     private static String settingsFileName = "settings.json";
 
@@ -249,4 +251,8 @@ public class Settings
     {
         return settings.sessionWaitTime;
     }
+
+		public static boolean isTLSEnabled() {
+			return settings.tlsEnabled;
+		}
 }

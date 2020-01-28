@@ -54,26 +54,28 @@ public class Server extends WebSocketServer
     {
         try
         {
-            // load up the key store
-            String STORETYPE = Settings.getServerStoreType();
-            String KEYSTORE = Settings.getServerKeyStore();
-            String STOREPASSWORD = Settings.getServerStorePassword();
-            String KEYPASSWORD = Settings.getServerKeyPassword();
-
-            KeyStore ks = KeyStore.getInstance(STORETYPE);
-            File kf = new File(KEYSTORE);
-            ks.load(new FileInputStream(kf), STOREPASSWORD.toCharArray());
-
-            KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
-            kmf.init(ks, KEYPASSWORD.toCharArray());
-            TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
-            tmf.init(ks);
-
-            SSLContext sslContext = null;
-            sslContext = SSLContext.getInstance("TLS");
-            sslContext.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
-
-            this.setWebSocketFactory(new DefaultSSLWebSocketServerFactory(sslContext));
+        	  if (Settings.isTLSEnabled()) {
+		            // load up the key store
+		            String STORETYPE = Settings.getServerStoreType();
+		            String KEYSTORE = Settings.getServerKeyStore();
+		            String STOREPASSWORD = Settings.getServerStorePassword();
+		            String KEYPASSWORD = Settings.getServerKeyPassword();
+		
+		            KeyStore ks = KeyStore.getInstance(STORETYPE);
+		            File kf = new File(KEYSTORE);
+		            ks.load(new FileInputStream(kf), STOREPASSWORD.toCharArray());
+		
+		            KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
+		            kmf.init(ks, KEYPASSWORD.toCharArray());
+		            TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
+		            tmf.init(ks);
+		
+		            SSLContext sslContext = null;
+		            sslContext = SSLContext.getInstance("TLS");
+		            sslContext.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
+		
+		            this.setWebSocketFactory(new DefaultSSLWebSocketServerFactory(sslContext));
+        	  }
         }
         catch (Exception e)
         {
