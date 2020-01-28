@@ -87,6 +87,11 @@
 				<artifactId>maven-shade-plugin</artifactId>
 				<configuration>
 					<finalName>${project.artifactId}</finalName>
+                    <transformers>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <mainClass>connection.Main</mainClass>
+                        </transformer>
+                    </transformers>
 				</configuration>
 				<executions>
 					<execution>
@@ -96,13 +101,6 @@
 						</goals>
 					</execution>
 				</executions>
-                <configuration>
-                    <transformers>
-                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                            <mainClass>connection.Main</mainClass>
-                        </transformer>
-                    </transformers>
-                </configuration>
 			</plugin>
 		</plugins>
 	</build>
