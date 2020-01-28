@@ -4,7 +4,6 @@
 /public/assets
 /public/js/game.min.js
 /storage/*.key
-/storage/framework/views
 /vendor
 /codecoverage
 /.idea
