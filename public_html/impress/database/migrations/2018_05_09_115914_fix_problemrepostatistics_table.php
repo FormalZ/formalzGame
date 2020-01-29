@@ -17,10 +17,10 @@ class FixProblemrepostatisticsTable extends Migration
     {
         Schema::table('problemrepostatistics', function (Blueprint $table) {
             $table->dropForeign(['problemstatistics_id']);
+            $table->dropPrimary();
             $table->dropColumn('problemstatistics_id');
             $table->integer('playedgame_id')->unsigned()->first();
             $table->foreign('playedgame_id')->references('id')->on('playedgames');
-            $table->dropPrimary(['order']);
             $table->primary(['playedgame_id', 'order']);
         });
     }
@@ -34,10 +34,10 @@ class FixProblemrepostatisticsTable extends Migration
     {
         Schema::table('problemrepostatistics', function (Blueprint $table) {
             $table->dropForeign(['playedgame_id']);
+            $table->dropPrimary();
             $table->dropColumn('playedgame_id');
             $table->integer('problemstatistics_id')->unsigned()->first();
             $table->foreign('problemstatistics_id')->references('id')->on('problemstatistics');
-            $table->dropPrimary(['order']);
             $table->primary(['problemstatistics_id', 'order']);
         });
     }
