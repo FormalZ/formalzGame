@@ -1,4 +1,4 @@
-package test;
+package main;
 
 import static org.junit.Assert.*;
 
@@ -8,10 +8,10 @@ import org.junit.Test;
 
 import main.Main;
 
-public class _MainTest
+public class MainTest
 {
     private Random random = new Random(873823);
-    
+
     @Test
     public void testOutputFormat()
     {
