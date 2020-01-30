@@ -51,7 +51,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
 				<configuration>
-					<finalName>${project.artifactId}</finalName>
+					<finalName>PathGeneration</finalName>
                     <transformers>
                         <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                             <mainClass>main.Main</mainClass>
