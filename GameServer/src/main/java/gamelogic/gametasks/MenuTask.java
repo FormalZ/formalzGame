@@ -9,6 +9,7 @@ import connection.Connection;
 import data.GameSession;
 import data.Problem;
 import data.Queries;
+import data.Settings;
 import gamelogic.gamestate.GameState;
 import gamelogic.gamestate.AdaptiveDifficulty;
 import logger.AbstractLogger;
@@ -75,13 +76,21 @@ public class MenuTask extends GameTask
             tracker.disable();
         }
         else {
-            tracker.run(problemTracking, userTracking);
-            try {
-                tracker.sendGameStart(problem.getMoney(), problem.getLives());
-            } catch (NullPointerException e) {
-                logger.log("Tracker not functioning");
-                tracker.disable();
-            }
+        	  if (Settings.isAnalyticsEnabled()) {
+		        	  String analyticsServerHost = Settings.getAnalyticsServerHost();
+		        	  int analyticsServerPort = Settings.getAnalyticsServerPort();
+		        	  boolean analyticsServerSecureConnection = Settings.isAnalyticsServerSecureConnection();
+		        	  
+		            tracker.run(analyticsServerHost, analyticsServerPort, analyticsServerSecureConnection, problemTracking, userTracking);
+		            try {
+		                tracker.sendGameStart(problem.getMoney(), problem.getLives());
+		            } catch (NullPointerException e) {
+		                logger.log("Tracker not functioning");
+		                tracker.disable();
+		            }
+        	  } else {
+        	  		tracker.disable();
+        	  }
         }
         session.setDeadline(problem.getDeadline());
         connection.sendProblemData(problem.getLives(), problem.getMoney(), problem.getDeadline());

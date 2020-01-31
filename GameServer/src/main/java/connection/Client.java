@@ -5,7 +5,6 @@
 package connection;
 
 import data.Queries;
-import es.eucm.tracker.formalz.FormalZDemo;
 import org.java_websocket.WebSocket;
 
 import gamelogic.gamestate.GameState;

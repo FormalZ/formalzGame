@@ -17,5 +17,10 @@
   "tlsEnabled": false,
   
   "maxSessionCreatedDifference": 2147483647,
-  "sessionWaitTime": 5000
+  "sessionWaitTime": 5000,
+
+  "analyticsEnabled": false,
+  "analyticsServerHost": "analytics.example.com",
+  "analyticsServerPort": 443,
+  "analyticsServerSecureConnection": true
 }

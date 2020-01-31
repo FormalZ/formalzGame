@@ -43,6 +43,14 @@ public class Settings
     private int sessionWaitTime;
     
 		private boolean tlsEnabled;
+		
+		private boolean analyticsEnabled;
+		
+		private String analyticsServerHost;
+		
+		private int analyticsServerPort;
+		
+		private boolean analyticsServerSecureConnection;
 
     private static String settingsFileName = "settings.json";
 
@@ -253,6 +261,22 @@ public class Settings
     }
 
 		public static boolean isTLSEnabled() {
-			return settings.tlsEnabled;
+				return settings.tlsEnabled;
+		}
+
+		public static boolean isAnalyticsEnabled() {
+				return settings.analyticsEnabled;
+		}
+		
+		public static String getAnalyticsServerHost() {
+				return settings.analyticsServerHost;
+		}
+		
+		public static int getAnalyticsServerPort() {
+				return settings.analyticsServerPort;
+		}
+		
+		public static boolean isAnalyticsServerSecureConnection() {
+				return settings.analyticsServerSecureConnection;
 		}
 }
