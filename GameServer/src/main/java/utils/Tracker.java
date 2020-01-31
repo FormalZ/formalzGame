@@ -7,8 +7,8 @@ import es.eucm.tracker.CompletableTracker;
 import es.eucm.tracker.TrackerAsset;
 import es.eucm.tracker.TrackerAssetSettings;
 import es.eucm.tracker.TrackerSettings;
-import es.eucm.tracker.formalz.JavaBridge;
 import eu.rageproject.asset.manager.Severity;
+import utils.analytics.JavaBridge;
 
 public class Tracker {
 
