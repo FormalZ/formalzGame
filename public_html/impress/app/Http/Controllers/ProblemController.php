@@ -95,7 +95,9 @@ class ProblemController extends Controller
             $this->createvalidator($data)->validate();
             //classify the problem:
             $classification = Problem::classifyProblem($data['pre_conditions'], $data['post_conditions']);
-            $trackingCode = $this->getTrackingCode($room->id);
+
+            $analyticsConfig = $this->registerPuzzleInAnalytics($room->id);
+
             $problem = Problem::create([
                 'header' => $data['header'],
                 'description' => $data['description'],
@@ -115,9 +117,9 @@ class ProblemController extends Controller
                 'hasArithmetic' => $classification['hasArithmetic'],
                 'hasImplication' => $classification['hasImplication'],
                 'problemcount' => $data['problemcount'],
-                'trackingCode' => $trackingCode['trackingCode'],
                 'displayDate' => $data['displayDate'],
-                'trackingLink' => $trackingCode['activity'],
+                'trackingCode' => $analyticsConfig['trackingCode'],
+                'trackingLink' => $analyticsConfig['activity'],
                 'autohide' => array_key_exists('autohide', $data)
             ]);
 
@@ -175,13 +177,22 @@ class ProblemController extends Controller
         //show the problem to the creator or room member:
         if ($iscreator ||
             DB::table('usersrooms')->where(['user_id' => Auth::id(), 'room_id' => $room->id])->first() != null) {
+
+            $dashboardUrl = null;
+            if (config('app.isAnalyticsEnabled') && $problem->trackingLink != NULL) {
+                $dashboardUrl = AnalyticsController::getDashboardUrl($problem->trackingLink);
+            }
+                
             return view(
                 'problem.profile',
                 ['problem' => $problem,
                     'room' => $room,
                     'iscreator' => $iscreator,
                     'scores' => $scores,
-                    'statistics' => $statistics]
+                    'statistics' => $statistics,
+                    'dashboardUrl' => $dashboardUrl,
+                    'isAnalyticsEnabled' => config('app.isAnalyticsEnabled'),
+                ]
             );
         }
 
@@ -348,20 +359,23 @@ class ProblemController extends Controller
             $sessionid = DB::table('gamesessions')->max('id') + 1;
             $salt = uniqid(mt_rand(), true);
             //create a gamesession for the java backend:
-            $analyticsController = new AnalyticsController(Auth::id());
-            try {
-                $token = $analyticsController->Login();
-                $user = User::where('id', Auth::id())->firstOrFail();
-                $user->trackingCode = $token;
-                $user->save();
-            } catch (\Exception $e) {
-                // Leave everything as is
+            if (config('app.isAnalyticsEnabled')) {
+                $analyticsController = new AnalyticsController(Auth::id());
+                try {
+                    $token = $analyticsController->Login();
+                    $user = User::where('id', Auth::id())->firstOrFail();
+                    $user->trackingCode = $token;
+                    $user->save();
+                } catch (\Exception $e) {
+                    // Leave everything as is
+                    Log::error($e->getMessage());
+                }
             }
             $session = GameSession::create([
                 'user_id' => Auth::id(),
                 'problem_id' => $id,
                 'token' => hash('sha256', $sessionid . Auth::id() . $id . $salt),
-		'hash' => 0
+		        'hash' => 0
             ]);
 
             //show the game view and pass the token:
@@ -410,9 +424,9 @@ class ProblemController extends Controller
         $room = Room::where('id', $problem->room_id)->firstOrFail();
         if ($room->isCreator(Auth::id())) {
             $newProblem = $problem->replicate();
-            $trackingCode = $this->getTrackingCode($room->id);
-            $newProblem->trackingCode = $trackingCode['trackingCode'];
-            $newProblem->trackingLink = $trackingCode['activity'];
+            $analyticsConfig = $this->registerPuzzleInAnalytics($room->id);
+            $newProblem->trackingCode = $analyticsConfig['trackingCode'];
+            $newProblem->trackingLink = $analyticsConfig['activity'];
             $problem->archive = true;
             $problem->save();
             $newProblem->save();
@@ -437,33 +451,44 @@ class ProblemController extends Controller
         $problem = Problem::where('id', $id)->firstOrFail();
         $room = Room::where('id', $problem->room_id)->firstOrFail();
         if ($room->isCreator(Auth::id())) {
-            $trackingCode = $this->getTrackingCode($room->id);
-            if($trackingCode == null){
-                try{
-                    $analyticsController = new AnalyticsController('formalz-teacher');
-                    $analyticsController->createRoom($room->id, $room->name);
-                    $trackingCode = $this->getTrackingCode($room->id);
+            if (config('app.isAnalyticsEnabled')) {
+                $analyticsConfig = $this->registerPuzzleInAnalytics($room->id);
+                if($analyticsConfig == null){
+                    // Maybe room not already created
+                    try{
+                        $analyticsController = new AnalyticsController(Auth::id());
+                        $analyticsController->createRoom($room->id, $room->name);
+                        $analyticsConfig = $this->registerPuzzleInAnalytics($room->id);
+                    }
+                    catch(\Error $e){
+                        Log::error($e->getMessage());
+                    }
                 }
-                catch(\Error $e){
-                    Log::error($e->getMessage());
-                }
+                $problem->trackingCode = $analyticsConfig['trackingCode'];
+                $problem->trackingLink = $analyticsConfig['activity'];
+                $problem->save();
             }
-            $problem->trackingCode = $trackingCode['trackingCode'];
-            $problem->trackingLink = $trackingCode['activity'];
-            $problem->save();
             return redirect(route('problem.show', ['id' => $id]));
         }
         abort(403);
     }
 
-    private function getTrackingCode($roomID)
+    private function registerPuzzleInAnalytics($roomID)
     {
-        try {
-            $analyticsController = new AnalyticsController('formalz-teacher');
-            $trackingCode = $analyticsController->createPuzzle($roomID);
-        } catch (\Throwable $e) {
-            $trackingCode = NULL;
-            Log::error($e->getMessage());
+        $trackingCode = array (
+            'activity' => NULL,
+            'trackingCode' => NULL,
+        );
+        if (config('app.isAnalyticsEnabled')) {
+            try {
+                $room = Room::where('id', $roomID)->firstOrFail();
+                $teachers = $room->getTeachersIds();
+                $analyticsController = new AnalyticsController($teachers[0]);
+                $trackingCode = $analyticsController->createPuzzle($roomID);
+            } catch (\Throwable $e) {
+                $trackingCode = NULL;
+                Log::error($e->getMessage());
+            }
         }
         return $trackingCode;
     }

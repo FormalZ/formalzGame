@@ -20,7 +20,7 @@ public class Tracker {
     
     private GameState gameState;
     
-		private TrackerAssetSettings settings;
+        private TrackerAssetSettings settings;
     
     public Tracker(Client client) {
         super();
@@ -39,9 +39,9 @@ public class Tracker {
     }
 
     private void setGameState(int money, int towers, int lives) {
-	      this.gameState.money = money;
-	      this.gameState.towers = towers;
-	      this.gameState.lives = lives;
+          this.gameState.money = money;
+          this.gameState.towers = towers;
+          this.gameState.lives = lives;
     }
 
     private void sendGameStart() {
@@ -73,8 +73,8 @@ public class Tracker {
             return;
         setGameState();
         try {
-          	this.appendGameState();
-          	this.tracker.getCompletable().completed("level1", CompletableTracker.Completable.Level, true, 1.0F);
+              this.appendGameState();
+              this.tracker.getCompletable().completed("level1", CompletableTracker.Completable.Level, true, 1.0F);
             this.tracker.flush();
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,8 +86,8 @@ public class Tracker {
             return;
         setGameState();
         try {
-          	this.appendGameState();
-          	this.tracker.getCompletable().initialized("wave", CompletableTracker.Completable.Stage);
+              this.appendGameState();
+              this.tracker.getCompletable().initialized("wave", CompletableTracker.Completable.Stage);
             this.tracker.flush();
         } catch (Exception e) {
             e.printStackTrace();
@@ -99,8 +99,8 @@ public class Tracker {
             return;
         setGameState();
         try {
-          	this.appendGameState();
-          	this.tracker.getCompletable().completed("wave", CompletableTracker.Completable.Stage, distance == 1.0F);
+              this.appendGameState();
+              this.tracker.getCompletable().completed("wave", CompletableTracker.Completable.Stage, distance == 1.0F);
             this.tracker.flush();
         } catch (Exception e) {
             e.printStackTrace();
@@ -113,10 +113,10 @@ public class Tracker {
         setGameState();
         this.tracker.setVar("writing_time", writingTime);
         try {
-          	this.tracker.setSuccess(distance == 0.0F);
-          	this.tracker.setScore(distance);
-          	int complexity = (int)(3.0D - Math.ceil((double)(distance * 3.0F)));
-          	this.tracker.getAlternative().selected(type, condition, AlternativeTracker.Alternative.Question);
+              this.tracker.setSuccess(distance == 0.0F);
+              this.tracker.setScore(distance);
+              int complexity = (int)(3.0D - Math.ceil((double)(distance * 3.0F)));
+              this.tracker.getAlternative().selected(type, condition, AlternativeTracker.Alternative.Question);
             this.tracker.flush();
         } catch (Exception e) {
             e.printStackTrace();
@@ -128,9 +128,9 @@ public class Tracker {
             return;
         setGameState();
         try {
-          	--this.gameState.lives;
-          	this.appendGameState();
-          	this.tracker.getCompletable().progressed("wave", CompletableTracker.Completable.Level, progress);
+              --this.gameState.lives;
+              this.appendGameState();
+              this.tracker.getCompletable().progressed("wave", CompletableTracker.Completable.Level, progress);
             this.tracker.flush();
         } catch (Exception e) {
             e.printStackTrace();
@@ -169,39 +169,39 @@ public class Tracker {
         disabled = true;
     }
 
-		public void run(String analyticsServerHost, int analyticsServerPort, boolean analyticsServerSecureConnection, String problemTracking, String userTracking) {
-	      this.tracker = new TrackerAsset();
-	      this.tracker.setBridge(new JavaBridge() {
-						public void log(Severity severity, String msg) {
-								super.log(severity, msg);
-								System.out.println("Severity: " + severity + " Message: " + msg);
-						}
-	      });
-	      this.settings = this.createSettings(analyticsServerHost, analyticsServerPort, analyticsServerSecureConnection, problemTracking, userTracking);
-	      this.tracker.setSettings(this.settings);
-	      this.tracker.start();
-	      this.gameState = new GameState();
-		}
+    public void run(String analyticsServerHost, int analyticsServerPort, boolean analyticsServerSecureConnection, String problemTracking, String userTracking) {
+        this.tracker = new TrackerAsset();
+        this.tracker.setBridge(new JavaBridge() {
+            public void log(Severity severity, String msg) {
+                super.log(severity, msg);
+                System.out.println("Severity: " + severity + " Message: " + msg);
+            }
+        });
+        this.settings = this.createSettings(analyticsServerHost, analyticsServerPort, analyticsServerSecureConnection, problemTracking, userTracking);
+        this.tracker.setSettings(this.settings);
+        this.tracker.start();
+        this.gameState = new GameState();
+    }
 
-		protected TrackerAssetSettings createSettings(String analyticsServerHost, int analyticsServerPort, boolean analyticsServerSecureConnection, String trackingCode, String userToken) {
-				TrackerAssetSettings settings = new TrackerAssetSettings();
-				settings.setHost(analyticsServerHost);
-				settings.setPort(analyticsServerPort);
-				settings.setSecure(analyticsServerSecureConnection);
-				settings.setTraceFormat(TrackerSettings.TraceFormats.XAPI);
-				settings.setBasePath("/api/");
-				settings.setTrackingCode(trackingCode);
-				settings.setUserToken(userToken);
-				return settings;
-		}
+    protected TrackerAssetSettings createSettings(String analyticsServerHost, int analyticsServerPort, boolean analyticsServerSecureConnection, String trackingCode, String userToken) {
+        TrackerAssetSettings settings = new TrackerAssetSettings();
+        settings.setHost(analyticsServerHost);
+        settings.setPort(analyticsServerPort);
+        settings.setSecure(analyticsServerSecureConnection);
+        settings.setTraceFormat(TrackerSettings.TraceFormats.XAPI);
+        settings.setBasePath("/api/");
+        settings.setTrackingCode(trackingCode);
+        settings.setUserToken(userToken);
+        return settings;
+    }
 
-		public void stop() {
-				this.tracker.flush();
-		}
-		
-		private static class GameState {
-				public int money = 100;
-				public int towers = 0;
-				public int lives = 20;
-		}
+    public void stop() {
+        this.tracker.flush();
+    }
+
+    private static class GameState {
+        public int money = 100;
+        public int towers = 0;
+        public int lives = 20;
+    }
 }

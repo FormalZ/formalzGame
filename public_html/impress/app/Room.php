@@ -40,4 +40,9 @@ class Room extends Model
         }
         return false;
     }
+
+    public function getTeachersIds()
+    {
+        return DB::table('teachersrooms')->where('room_id', $this->id)->pluck('teacher_id');
+    }
 }

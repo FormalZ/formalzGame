@@ -37,4 +37,11 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'analytics' => [
+        'baseUrl' => env('ANALYTICS_BASE_URL', 'http://analytics.example.com'),
+        'apiBaseUrl' => env('ANALYTICS_API_BASE_URL', 'http://api.example.com'),
+        'admin_username' => env('ANALYTICS_ADMIN_USERNAME', 'admin'),
+        'admin_password' => env('ANALYTICS_ADMIN_PASSWORD', 'password'),
+    ],
+
 ];

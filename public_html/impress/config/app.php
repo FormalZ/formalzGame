@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => 'Ludiscite',
+    'name' => env('APP_NAME', 'Ludiscite'),
 
     /*
     |--------------------------------------------------------------------------
@@ -230,4 +230,13 @@ return [
 
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Analytics Configuration
+    |--------------------------------------------------------------------------
+    |
+    | Enables or disables analytics integration. Analytics service it's configured in services.php
+    |
+    */
+    'isAnalyticsEnabled' => env('APP_ANALYTICS_ENABLED', false),
 ];

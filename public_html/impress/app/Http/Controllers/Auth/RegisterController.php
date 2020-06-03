@@ -16,6 +16,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Validation\ValidationException;
 use App\Analytics\AnalyticsController;
+use App\Analytics\AdminAnalyticsController;
 
 class RegisterController extends Controller
 {
@@ -123,6 +124,9 @@ class RegisterController extends Controller
         //register the teacher:
         event(new Registered($user = $this->create($data)));
         DB::table('teachers')->insert(['user_id' => $user->id]);
+        if (config('app.isAnalyticsEnabled')) {
+            AdminAnalyticsController::GetInstance()->createUser($user->id, $user->name, 'teacher');
+        }
         $invite->delete();
         $this->guard()->login($user);
 
@@ -154,19 +158,18 @@ class RegisterController extends Controller
         //register the user to the room:
         event(new Registered($user = $this->create($data)));
         DB::table('usersrooms')->insert(['user_id' => $user->id, 'room_id' => $room->id]);
-        try{
-            $analyticsController = new AnalyticsController('formalz-teacher');
-	    //check if a student with this mail does not exist already
-            $registered = DB::table('users')->where('email', $data['email']);
-            if(count($registered) > 0) {
-              $analyticsController->createStudent($user->id, $user->name);
+        if (config('app.isAnalyticsEnabled')) {
+            try{
+                $teachers = $room->getTeachersIds();
+                $analyticsController = new AnalyticsController($teachers[0]);
+                $analyticsController->createStudent($user->id, $user->name);
+                $analyticsController->addParticipants($room->id, ['students' => [$user->id]]);
+                DB::table('users')->where(['id' =>$user->id])->update(['trackingCode' => $user->id]);
             }
-            $analyticsController->addParticipants($room->name, ['students' => [$user->id]]);
-            DB::table('users')->where(['id' =>$user->id])->update(['trackingCode' => $user->id]);
-        }
-        catch(\Throwable $e){
-            // Leave everything as is
-            Log::error($e->getMessage());
+            catch(\Throwable $e){
+                // Leave everything as is
+                Log::error($e->getMessage());
+            }
         }
         $invite->delete();
         $this->guard()->login($user);
@@ -203,18 +206,18 @@ class RegisterController extends Controller
         //register the user to the room:
         event(new Registered($user = $this->create($data)));
         DB::table('usersrooms')->insert(['user_id' => $user->id, 'room_id' => $room->id]);
-        try{
-            $analyticsController = new AnalyticsController('formalz-teacher');
-	    //check if a student with this mail does not exist already
-            $registered = DB::table('users')->where('email', $data['email']);
-            if(count($registered) > 0) {
-              $analyticsController->createStudent($user->id, $user->name);
+        if (config('app.isAnalyticsEnabled')) {
+            try{
+                $teachers = $room->getTeachersIds();
+                $analyticsController = new AnalyticsController($teachers[0]);
+                $analyticsController->createStudent($user->id, $user->name);
+                $analyticsController->addParticipants($room->id, ['students' => [$user->id]]);
+                DB::table('users')->where(['id' =>$user->id])->update(['trackingCode' => $user->id]);
             }
-            $analyticsController->addParticipants($room->id, ['students' => [$user->id]]);
-            DB::table('users')->where(['id' =>$user->id])->update(['trackingCode' => $user->id]);
-        }
-        catch(\Exception $e){
-            // Leave everything as is
+            catch(\Exception $e){
+                // Leave everything as is
+                Log::error($e->getMessage());
+            }
         }
         $this->guard()->login($user);
 

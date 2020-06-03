@@ -41,16 +41,16 @@ public class Settings
     private long maxSessionCreatedDifference;
 
     private int sessionWaitTime;
-    
-		private boolean tlsEnabled;
-		
-		private boolean analyticsEnabled;
-		
-		private String analyticsServerHost;
-		
-		private int analyticsServerPort;
-		
-		private boolean analyticsServerSecureConnection;
+
+    private boolean tlsEnabled;
+
+    private boolean analyticsEnabled;
+
+    private String analyticsServerHost;
+
+    private int analyticsServerPort;
+
+    private boolean analyticsServerSecureConnection;
 
     private static String settingsFileName = "settings.json";
 
@@ -206,6 +206,10 @@ public class Settings
         return settings.connectionPort;
     }
 
+    public static boolean isTLSEnabled() {
+        return settings.tlsEnabled;
+    }
+
     /**
      * Gets the type of the keystore for the server.
      * @return Store type.
@@ -260,23 +264,19 @@ public class Settings
         return settings.sessionWaitTime;
     }
 
-		public static boolean isTLSEnabled() {
-				return settings.tlsEnabled;
-		}
+    public static boolean isAnalyticsEnabled() {
+        return settings.analyticsEnabled;
+    }
 
-		public static boolean isAnalyticsEnabled() {
-				return settings.analyticsEnabled;
-		}
-		
-		public static String getAnalyticsServerHost() {
-				return settings.analyticsServerHost;
-		}
-		
-		public static int getAnalyticsServerPort() {
-				return settings.analyticsServerPort;
-		}
-		
-		public static boolean isAnalyticsServerSecureConnection() {
-				return settings.analyticsServerSecureConnection;
-		}
+    public static String getAnalyticsServerHost() {
+        return settings.analyticsServerHost;
+    }
+
+    public static int getAnalyticsServerPort() {
+        return settings.analyticsServerPort;
+    }
+
+    public static boolean isAnalyticsServerSecureConnection() {
+        return settings.analyticsServerSecureConnection;
+    }
 }

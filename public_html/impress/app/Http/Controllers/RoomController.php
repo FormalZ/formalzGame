@@ -80,13 +80,15 @@ class RoomController extends Controller
             //Set room owner (is a direct query because eloquent cannot
             //handle composite primary keys)
             DB::table('teachersrooms')->insert(['teacher_id' => $teacher->id, 'room_id' => $room->id]);
-            try {
-                $analyticsController = new AnalyticsController('formalz-teacher');
-                $analyticsController->createRoom($room->id, $data['name']);
-            }
-            catch(\Throwable $e){
-                // Leave everything as is
-                Log::error($e->getMessage());
+            if (config('app.isAnalyticsEnabled')) {
+                try {
+                    $analyticsController = new AnalyticsController($teacher->id);
+                    $analyticsController->createRoom($room->id, $data['name']);
+                }
+                catch(\Throwable $e){
+                    // Leave everything as is
+                    Log::error($e->getMessage());
+                }
             }
             return $room;
         }

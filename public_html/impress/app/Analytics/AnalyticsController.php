@@ -3,14 +3,9 @@ namespace App\Analytics;
 
 use Exception;
 
-const BASE_URL = 'https://analytics.e-ucm.es/';
-const WEBHOOK_URL = BASE_URL . 'api/proxy/webhook/';
-const KIBANA_URL = BASE_URL . 'api/proxy/kibana/';
-const ADMIN_USERNAME = 'formalz-admin-test';
-const ADMIN_PASSWORD = 'admintest123456';
+class AnalyticsController extends BaseAnalyticsController
+{
 
-
-class AnalyticsController {
     private $userid = null;
     private $auth_token = null;
     private $lastauth = null;
@@ -34,8 +29,8 @@ class AnalyticsController {
      * Performs the login and saves the auth token into the internal auth_token variable.
      */
     function Login(){
-        $result = request(
-            BASE_URL . 'api/login/formalz',
+        $result = self::request(
+            config('services.analytics.apiBaseUrl') . 'api/login/formalz',
             array(
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
@@ -62,8 +57,8 @@ class AnalyticsController {
      * @return object           Object of the user created.
      */
     function createStudent($id, $username){
-        $result = request(
-            WEBHOOK_URL . 'events/collector/user_created',
+        $result = self::request(
+            self::getWebhookUrl() . 'events/collector/user_created',
             array(
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
@@ -95,8 +90,8 @@ class AnalyticsController {
             $body['students'] = $students;
         }
 
-        $result = request(
-            WEBHOOK_URL . 'events/collector/room_created',
+        $result = self::request(
+            self::getWebhookUrl() . 'events/collector/room_created',
             array(
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
@@ -120,8 +115,8 @@ class AnalyticsController {
      */
     function removeRoom($id){
 
-        $result = request(
-            WEBHOOK_URL . 'events/collector/room_removed',
+        $result = self::request(
+            self::getWebhookUrl() . 'events/collector/room_removed',
             array(
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
@@ -145,8 +140,8 @@ class AnalyticsController {
      */
     function addParticipants($roomId, $participants){
 
-        $result = request(
-            WEBHOOK_URL . 'events/collector/room_participants_added',
+        $result = self::request(
+            self::getWebhookUrl() . 'events/collector/room_participants_added',
             array(
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
@@ -170,8 +165,8 @@ class AnalyticsController {
      */
     function removeParticipants($roomId, $participants){
 
-        $result = request(
-            WEBHOOK_URL . 'events/collector/room_participants_removed',
+        $result = self::request(
+            self::getWebhookUrl() . 'events/collector/room_participants_removed',
             array(
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
@@ -195,8 +190,8 @@ class AnalyticsController {
      */
     function createPuzzle($roomId){
 
-        $result = request(
-            WEBHOOK_URL . 'events/collector/puzzle_created',
+        $result = self::request(
+            self::getWebhookUrl() . 'events/collector/puzzle_created',
             array(
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
@@ -211,67 +206,4 @@ class AnalyticsController {
 
         return $result['result'];
     }
-}
-
-// #####################################################################
-// ################## UTIL FUNCTIONS FOR THE REQUESTS ##################
-// #####################################################################
-
-function request($url, $headers, $body){
-    $resultobject = array();
-
-    $options = array(
-        'http' => array(
-            'header' => formatheaders($headers),
-            'method' => 'POST',
-            'content' => json_encode($body),
-            'ignore_errors' => true
-        )
-    );
-    $context = stream_context_create($options);
-    $result = file_get_contents($url, false, $context);
-    $code = getHttpCode($http_response_header);
-
-    $resultobject['code'] = $code;
-    $resultobject['context'] = $options;
-    $resultobject['context']['url'] = $url;
-
-    if ($result === FALSE) {
-        $resultobject['error'] = true;
-    }else{
-        $decoded = json_decode($result, true);
-
-        if($decoded){
-            if($code !== 200){
-                $resultobject['error'] = $decoded;
-            }else{
-                $resultobject['result'] = $decoded;
-            }
-        }else{
-            $resultobject['error'] = true;
-        }
-    }
-
-    return $resultobject;
-}
-
-function formatheaders($headers){
-    $formatted = "";
-
-    foreach ($headers as $key => $content) {
-        $formatted .= $key . ': ' . $content . "\r\n";
-    }
-
-    return $formatted;
-}
-
-function getHttpCode($http_response_header)
-{
-    if(is_array($http_response_header))
-    {
-        $parts=explode(' ',$http_response_header[0]);
-        if(count($parts)>1) //HTTP/1.0 <code> <text>
-            return intval($parts[1]); //Get code
-    }
-    return 0;
 }

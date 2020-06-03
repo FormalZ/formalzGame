@@ -4,7 +4,8 @@ namespace App\Analytics;
 
 use Exception;
 
-class AdminAnalyticsController {
+class AdminAnalyticsController extends BaseAnalyticsController
+{
     private static $instance;
     private $admin_token = null;
     private $lastauth = null;
@@ -28,10 +29,16 @@ class AdminAnalyticsController {
     }
 
     private function AdminLogin(){
-        $result = request(
-            BASE_URL . 'api/login',
-            array('Content-Type' => 'application/json', 'Accept' => 'application/json'),
-            array('username' => ADMIN_USERNAME, 'password' => ADMIN_PASSWORD)
+        $result = self::request(
+            config('services.analytics.apiBaseUrl') . 'api/login',
+            array(
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json'
+            ),
+            array(
+                'username' => config('services.analytics.admin_username'),
+                'password' => config('services.analytics.admin_password')
+            )
         );
 
         if(isset($result['error'])){
@@ -53,8 +60,8 @@ class AdminAnalyticsController {
      * @return object           Object of the user created.
      */
     function createUser($id, $username, $role){
-        $result = request(
-            WEBHOOK_URL . 'events/collector/user_created',
+        $result = self::request(
+            self::getWebhookUrl() . 'events/collector/user_created',
             array(
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',

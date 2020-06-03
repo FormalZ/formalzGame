@@ -29,9 +29,9 @@ at Utrecht University within the Software and Game project course (2018)
                         @if ($iscreator)
                             {{$problem->description}}
                         @endif
-                        @if ($iscreator && $problem->trackingCode != NULL)
+                        @if ($iscreator && $dashboardUrl != NULL)
                             <br>Tracking enabled: <a
-                                    href="https://analytics.e-ucm.es/api/proxy/kibana/app/kibana#/dashboard/dashboard_{{ $problem->trackingLink }}">Dashboard</a>
+                                    href="{{ $dashboardUrl }}">Dashboard</a>
                         @endif
                         <br/>
                         <br/>
@@ -76,7 +76,7 @@ at Utrecht University within the Software and Game project course (2018)
                                     <button onclick="window.location.href='/problem/{{$problem->id}}/remakepath'">
                                         Generate New Path
                                     </button>
-                                    @if ($problem->trackingCode == NULL)
+                                    @if ($problem->trackingCode == NULL && $isAnalyticsEnabled )
                                         <button onclick="window.location.href='/problem/{{$problem->id}}/addtracking'">
                                             Add tracking
                                         </button>
