@@ -41,7 +41,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', true),
+    'debug' => env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -104,6 +104,7 @@ return [
     | to a random, 32 character string, otherwise these encrypted strings
     | will not be safe. Please do this before deploying an application!
     |
+    | Note: you can use php artisan key:generate
     */
 
     'key' => env('APP_KEY'),
@@ -125,7 +126,12 @@ return [
 
     'log' => env('APP_LOG', 'single'),
 
-    'log_level' => env('APP_LOG_LEVEL', 'debug'),
+    /*
+    | Log levels defined in the RFC 5424 specification
+    | Available Settings: emergency, alert, critical, error, warning, notice, info, and debug.
+    */
+
+    'log_level' => env('APP_LOG_LEVEL', 'info'),
 
     /*
     |--------------------------------------------------------------------------
