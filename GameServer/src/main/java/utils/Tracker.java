@@ -196,6 +196,8 @@ public class Tracker {
     }
 
     public void stop() {
+        if(disabled)
+            return;
         this.tracker.flush();
     }
 
