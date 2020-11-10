@@ -1,0 +1,139 @@
+{ "configuration": {
+  // Controls LOG4J2 status (internal) logging level
+  "status": "warn",
+  // Controls LOG4J2 status destination ("err", path, if empty go to stdout)
+  //"dest": "status.log",
+  "name": "GameServer",
+  "monitorInterval": "15",
+  "properties": {
+    "property": [
+      {
+        "name" : "log-path",
+        "value": "logs"
+      },
+      {
+        "name" : "archive",
+        "value": "${log-path}/archive"
+      },
+      {
+        "name" : "date-format",
+        "value": "${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}"
+      },
+      {
+        "name" : "log-level-format",
+        "value": "${LOG_LEVEL_PATTERN:-%5p}"
+      },
+      {
+        "name" : "log-exception-format",
+        "value": "${LOG_EXCEPTION_CONVERSION_WORD:-%xEx}"
+      },
+      {
+        "name" : "console-parttern",
+        "value": "%style{}{faint}%d{${date-format}} %highlight{${log-level-format}}{FATAL=red blink, ERROR=red, WARN=yellow bold, INFO=green, DEBUG=green bold, TRACE=blue} %style{}{magenta} [%15.15t] [%15.15X{clientIp}] %style{[%15.15X{sessionName}]}{magenta} %style{%25.25c{1.}}{cyan} : %m%n${log-exception-format}"
+      },
+      {
+        "name" : "file-parttern",
+        "value": "%d{${date-format}} ${log-level-format} [%t] [%.15X{clientIp}] [%.15X{sessionName}] %25.25c{1.} : %m%n${log-exception-format}"
+      }
+    ]
+  },
+  "ThresholdFilter": { "level": "debug" },
+  "appenders": {
+    "appender": [
+      {
+        "type": "Console",
+        "name": "Console-Appender",
+        "target": "SYSTEM_OUT",
+        "PatternLayout": {
+          "pattern": "${console-parttern}"
+        }
+      },
+      {
+        "type": "RollingFile",
+        "name": "RollingFile-Appender",
+        "fileName": "${log-path}/formaz-gameserver.log",
+        "filePattern": "${archive}/formaz-gameserver.log.%d{yyyy-MM-dd-hh-mm}.gz",
+        "PatternLayout": {
+          "pattern": "${file-parttern}"
+        },
+        "Policies": {
+          "SizeBasedTriggeringPolicy": {
+            "size": "10 MB"
+          }
+        },
+        "DefaultRolloverStrategy": {
+          "max": "10"
+        }
+      },
+      {
+        "type": "Routing",
+        "name": "Routing-Appender",
+        "ContextMapFilter" : {
+          "onMatch": "DENY",
+          "onMismatch": "NEUTRAL",
+          "keyValuePair" : [
+            {
+              "key": "disabled",
+              "value": "true"
+            }
+          ]
+        },
+        "IdlePurgePolicy" : {
+          "timeToLive": "15",
+          "timeUnit": "minutes"
+        },
+        "Routes": {
+          "pattern": "$${ctx:type}",
+          "Route" : [
+            {
+              "RollingFile": {
+                "name": "Rolling-Appender-${ctx:sessionName}",
+                "fileName": "${log-path}/formalz_session-${ctx:sessionName}.log",
+                "filePattern": "${archive}/formalz_session-${ctx:sessionName}.%d{yyyy-MM-dd-hh-mm}.log.gz",
+                "PatternLayout": {
+                  "pattern": "${file-parttern}"
+                },
+                "Policies": {
+                  "SizeBasedTriggeringPolicy": {
+                    "size": "10 MB"
+                  }
+                },
+                "DefaultRolloverStrategy": {
+                  "max": "10"
+                }
+              },
+              "key": "file"
+            },
+            {
+              "ref": "Console-Appender"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "loggers": {
+    "logger": [
+      {
+        "name": "formalz",
+        "level": "debug",
+        "AppenderRef": [
+          {
+            "ref": "RollingFile-Appender", "level":"error"
+          },
+          {
+            "ref": "Console-Appender", "level":"info"
+          },
+          {
+            "ref": "Routing-Appender", "level":"debug"
+          }
+        ]
+      }
+    ],
+    "root": {
+      "level": "info",
+      "AppenderRef": {"ref": "Console-Appender"}
+    }
+  }
+}
+}

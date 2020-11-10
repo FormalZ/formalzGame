@@ -1,16 +1,17 @@
 {
-  "haskellTargetURL": "http://science-vs159.science.uu.nl",
+  "haskellTargetURL": "http://localhost",
   "haskellPort"  : 8080,
   "haskellMethod": "compare",
   "haskellTimeout": 5000,
-  
-  "databaseDriver": "com.mysql.jdbc.Driver",
+
+  "trustedProxyIps": ["192.168.0.0/16"],
+  "workerThreadNumber": "2",
+
   "databaseUsername": "root",
-  "databasePassword": "goodasspassword",
-  "databaseURLPrefix": "jdbc:mysql:\/\/",
-  "databaseHostURL": "localhost",
-  "databaseName": "impress_testing_gameserver",
-  "databaseUseSSL": false,
+  "databasePassword": "admin",
+  "databaseURL": "jdbc:mysql://localhost/formalz?useSSL=false",
+  "databaseMinPoolSize": 2,
+  "databaseMaxPoolSize": 8,
   
   "connectionPort": 2000,
   
