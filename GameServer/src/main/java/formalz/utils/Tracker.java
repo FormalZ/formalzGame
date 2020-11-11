@@ -180,7 +180,7 @@ public class Tracker {
     }
 
     public void enable(){
-        disabled = true;
+        disabled = false;
     }
 
     public void run(String analyticsServerHost, int analyticsServerPort, boolean analyticsServerSecureConnection, String problemTracking, String userTracking) {

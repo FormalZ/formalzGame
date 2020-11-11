@@ -11,6 +11,7 @@ import formalz.gamelogic.gametasks.GameTask;
 public interface CommandRunnerContext {
     public Map<String, String> getContextMap();
     public Deque<GameCommand> getCommands();
+    public AtomicBoolean getAlreadyRunningCommands();
     public AtomicBoolean getAuthenticated();
     public GameTask getGame();
     public Client getClient();

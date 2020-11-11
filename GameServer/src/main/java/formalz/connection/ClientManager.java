@@ -52,6 +52,8 @@ public class ClientManager {
 
     private Deque<GameCommand> commandQueue;
 
+    private AtomicBoolean runningCommands;
+
     private Timer timer;
 
     private ExecutorService commandRunner;
@@ -82,6 +84,7 @@ public class ClientManager {
         this.timer = timer;
         this.authenticated = new AtomicBoolean(false);
         this.commandQueue = new ConcurrentLinkedDeque<>();
+        this.runningCommands = new AtomicBoolean(false);
         this.commandRunner = commandRunner;
         this.queries = queries;
         setAuthTimeoutCheck();
@@ -238,6 +241,11 @@ public class ClientManager {
         @Override
         public void submitTask(Runnable task) {
             commandRunner.submit(task);
+        }
+
+        @Override
+        public AtomicBoolean getAlreadyRunningCommands() {
+            return runningCommands;
         }
     }
 }

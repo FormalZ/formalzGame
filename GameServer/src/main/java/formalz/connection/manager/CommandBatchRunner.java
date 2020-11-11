@@ -14,7 +14,7 @@ import formalz.data.GameSession;
 import formalz.data.Queries;
 import formalz.gamelogic.gametasks.GameTask;
 
-public class CommandBatchRunner implements Runnable {
+public class CommandBatchRunner implements Runnable, Cloneable {
     public static final int DEFAULT_BATCH_SIZE = 5;
     private static final Logger LOGGER = LoggerFactory.getLogger(CommandBatchRunner.class);
 
@@ -37,6 +37,12 @@ public class CommandBatchRunner implements Runnable {
 
     @Override
     public void run() {
+        AtomicBoolean runningCommands= this.context.getAlreadyRunningCommands();
+        if (!runningCommands.compareAndSet(false, true)) {
+            LOGGER.debug("Already running commands");
+            return;
+        }
+        
         java.util.Map<String, String> ctx = this.context.getContextMap();
         MDC.setContextMap(ctx);
         Deque<GameCommand> commandQueue = this.context.getCommands();
@@ -78,10 +84,11 @@ public class CommandBatchRunner implements Runnable {
             commandsExecuted++;
         }
 
+        this.context.getContextMap().keySet().forEach((key)->{ MDC.remove(key); });
+        runningCommands.set(false);
         if (! commandQueue.isEmpty()) {
             context.submitTask(clone());
         }
-        this.context.getContextMap().keySet().forEach((key)->{ MDC.remove(key); });
     }
 
     @Override
