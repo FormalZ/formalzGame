@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- mini.css -->
+<link rel="stylesheet" href="mini-default.min.css">
+<style>
+img.resize85 {
+  max-width:85%;
+  max-height:85%;
+}
+div.center {
+  text-align: center;
+  vertical-align: middle;
+}  
+</style>
+
+<!-- graph drawing lib -->
+<script src="mermaid.min.js"></script>
+<script>
+  mermaid.initialize({startOnLoad:true});
+</script>
+
+<title>FormalZ User Manual</title>
+</head>
+
+<body>
+<header>
+  <a href="manualhome.html" class="button">Home</a>    
+  <a href="Sparks.html" class="button">Sparks</a>
+  <a href="Scanners.html" class="button">Programming Scanners</a>
+  <a href="Towers.html" class="button">Towers</a>
+  <a href="Score.html" class="button">Score</a>
+  <a href="Papers.html" class="button">Papers</a>  
+</header>
+    
+<div class="center"><h1>Programming Scanners</h1></div>
+
+<div class="card fluid"> 
+
+<p>There are two scanners: the pre-scanner and the post-scanner. Click on a scanner to program it. This will open
+    the construction pane. 
+</p>
+    
+  <div class="center">
+  <img class="resize85" src="images/constructionpane.png"  />
+  </div>
+
+
+<p>You program a scanner by dragging construction blocks into the construction area (the large white area in the construction pane). 
+    Every block
+    has at least one connector. Connect the blocks to form a formula specifying which data packages (sparks)
+    will be let through by the scanners. Those that do not satisfy the formula will be marked (and shot at by towers)!
+    Always start the program of your scanner with the <code>Begin</code> block, for example, to build the formula 
+    <code>x &gt; 0</code>:</p>
+    
+  <div class="center">
+  <div class="mermaid">
+  graph TD
+      Begin --> B[&gt;]
+      B-->x
+      B-->0;
+  </div>
+  </div>
+</div>
+  
+<div class="card fluid"> 
+<h3>Construction blocks</h3>    
+      
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>    
+      <th>Block</th>
+      <th>Type</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <td data-label="Name">numeric constant block</td>
+        <td data-label="Block">
+            <div class="mermaid">
+            graph LR
+                A["c"] ;
+            </div>
+            where c is numeric constant such as 0,1,2...
+        </td>
+        <td data-label="Type">a numeric type</td>
+        <td data-label="Example">
+            <div class="mermaid">
+            graph TD
+                A[9] ;
+            </div>
+            representing the constant <code>9</code>.
+        </td>
+    </tr>
+      
+    <tr>
+        <td data-label="Name">boolean constant block</td>
+        <td data-label="Block">
+            <div class="mermaid">
+            graph LR
+                true 
+                false ;
+            </div>
+        </td>
+        <td data-label="Type"><code>boolean</code></td>
+        <td data-label="Example">
+            <div class="mermaid">
+            graph TD
+                true ;
+            </div>
+            representing the constant <code>true</code>.
+        </td>
+    </tr>
+      
+    <tr>
+        <td data-label="Name">null block</td>
+        <td data-label="Block">
+            <div class="mermaid">
+            graph LR
+                null ;
+            </div>
+            In FormalZ, only a variable of type array can be null.
+        </td>
+        <td data-label="Type"></td>
+        <td data-label="Example">
+    </tr>
+      
+    <tr>
+        <td data-label="Name">variable block</td>
+        <td data-label="Block">
+            <div class="mermaid">
+            graph LR
+                A["v"] ;
+            </div>
+            where v is a variable name.
+        </td>
+        <td data-label="Type"></td>
+        <td data-label="Example">
+            <div class="mermaid">
+            graph TD
+                x ;
+            </div>
+            representing the variable <code>x</code>.
+        </td>
+    </tr>
+    
+    <tr>
+        <td data-label="Name">retval block</td>
+        <td data-label="Block">
+            <div class="mermaid">
+            graph LR
+                A["retval"] ;
+            </div>
+            This is a special variable representing the output of the CPU.
+        </td>
+        <td data-label="Type"></td>
+        <td data-label="Example">
+        </td>
+    </tr>
+    
+    <tr>
+        <td data-label="Name">array index block</td>
+        <td data-label="Block">
+            <div class="mermaid">
+            graph LR
+                A["[]"];
+            </div>
+        </td>
+        <td data-label="Type">t[] &rarr; <code>int</code> &rarr; t where t is a primitive type such as <code>int</code> or <code>float</code>.</td>
+        <td data-label="Example">
+            <div class="mermaid">
+            graph TD
+                B["[]"] --> a
+                B --> i;
+            </div>
+            representing <code>a[i]</code> (the i-th element of the array <code>a</code>).
+        </td>
+    </tr>
+    
+    <tr>
+        <td data-label="Name">array length block</td>
+        <td data-label="Block">
+            <div class="mermaid">
+            graph LR
+                A["length"] ;
+            </div>
+        </td>
+        <td data-label="Type">t[] &rarr; <code>int</code> where t is a primitive type such as <code>int</code> or <code>float</code>.</td>
+        <td data-label="Example">
+            <div class="mermaid">
+            graph TD
+                B[length] --> a
+            </div>
+            representing <code>a.length</code> (the length of the array <code>a</code>).
+        </td>
+    </tr>
+      
+    <tr>
+        <td data-label="Name">arithmetic block</td>
+        <td data-label="Block">
+            <div class="mermaid">
+            graph LR
+                A["&otimes;"] ;
+            </div>
+            where &otimes; is either +,-,*,/, or % (remainder of division)
+        </td>
+        <td data-label="Type">t &rarr; t &rarr; t where t is a primitive numeric type such as <code>int</code> or <code>float</code>.</td>
+        <td data-label="Example">
+            <div class="mermaid">
+            graph TD
+                B[+] --> x
+                B --> 1;
+            </div>
+            representing <code>x  +  1</code>.
+        </td>
+    </tr>
+    
+    <tr>
+        <td data-label="Name">conditional block</td>
+        <td data-label="Block">
+            <div class="mermaid">
+            graph LR
+                A["<b>R</b>"];
+            </div>
+            where <b>R</b> is either &gt;, &ge;, &lt;, &le;.
+        </td>
+        <td data-label="Type">t &rarr; t &rarr; <code>boolean</code> where t is a primitive numeric type such as <code>int</code> or <code>float</code>.</td>
+        <td data-label="Example">
+            <div class="mermaid">
+            graph TD
+                B[&gt] --> x
+                B --> 0;
+            </div>
+            representing <code>x  &gt  1</code>.
+        </td>
+    </tr>    
+    
+    <tr>
+        <td data-label="Name">equality and inequality blocks</td>
+        <td data-label="Block">
+            <div class="mermaid">
+            graph LR
+                A["<b>R</b>"];
+            </div>
+            where <b>R</b> is either == or !=.
+        </td>
+        <td data-label="Type">t &rarr; t &rarr; <code>boolean</code> where t is a primitive numeric type such as <code>int</code> or <code>float</code>.</td>
+        <td data-label="Example">
+            <div class="mermaid">
+            graph TD
+                B["=="] --> x
+                B --> 0;
+            </div>
+            representing <code>x  ==  1</code>.
+        </td>
+    </tr>
+    
+    <tr>
+        <td data-label="Name">logic operator block</td>
+        <td data-label="Block">
+            <div class="mermaid">
+            graph LR
+                A["&oplus;"];
+            </div>
+            where &oplus; is either &&, ||, or <code>imp</code> (implication).
+        </td>
+        <td data-label="Type"><code>boolean</code> &rarr; <code>boolean</code> &rarr; <code>boolean</code>.</td>
+        <td data-label="Example">
+            <div class="mermaid">
+            graph TD
+                B["&&"] --> A["&gt;"]
+                B --> C["&gt;"]
+                A --> x
+                A --> 0
+                C --> y
+                C --> 1 ;
+            </div>
+            representing <code>(x &gt; 0) && (y &gt; 1)</code>.
+        </td>
+    </tr>
+    
+    <tr>
+        <td data-label="Name">forall quantifier block</td>
+        <td data-label="Block">
+            <div class="mermaid">
+            graph LR
+                A["&forall;"] ;
+            </div>
+        </td>
+        <td data-label="Type"><code>t</code>[] &rarr; <code>int</code> &rarr; <code>boolean</code> &rarr; <code>boolean</code> where t is a primitive type such as <code>int</code> or <code>float</code>. 
+            <br>It always quantifies over an array (the left-child).
+            The middle child represents an index of the array to quantify over.
+            <br/>The right-child represents the formula that should hold on all elements
+            of the array.
+        </td>    
+        <td data-label="Example">
+            <div class="mermaid">
+            graph TD
+                B["&forall;"] --> a
+                B --> i
+                B --> C[>]
+                C --> D["[]"]
+                D --> D1[a]
+                D --> D2[i]
+                C --> 0
+            </div>
+            representing:
+            <br/><code>forall(a,i -&gt; a[i]&gt; 0)</code> in Java,
+            <br/><code>forall(a,i =&gt; a[i]&gt; 0)</code> in C#,
+            <br/><code>(&forall; i : 0&le; i &lt; #a: a[i]&gt; 0)</code> in Math.
+        </td>
+    </tr>
+    
+    <tr>
+        <td data-label="Name">exist quantifier block</td>
+        <td data-label="Block">
+            <div class="mermaid">
+            graph LR
+                A["&exist;"] ;
+            </div>
+        </td>
+        <td data-label="Type"><code>t</code>[] &rarr; <code>int</code> &rarr; <code>boolean</code> &rarr; <code>boolean</code> where t is a primitive type such as <code>int</code> or <code>float</code>. 
+            <br>It always quantifies over an array (the left-child).
+            The middle child represents an index of the array to quantify over.
+            <br/>The right-child represents the formula that should hold at least one element
+            of the array.
+        </td>    
+        <td data-label="Example">
+            <div class="mermaid">
+            graph TD
+                B["&exist;"] --> a
+                B --> i
+                B --> C[>]
+                C --> D["[]"]
+                D --> D1[a]
+                D --> D2[i]
+                C --> 0
+            </div>
+            representing:
+            <br/><code>exist(a,i -&gt; a[i]&gt; 0)</code> in Java,
+            <br/><code>exist(a,i =&gt; a[i]&gt; 0)</code> in C#,
+            <br/><code>(&exist; i : 0&le; i &lt; #a: a[i]&gt; 0)</code> in Math.
+        </td>
+    </tr>
+    
+    
+    <tr>
+        <td data-label="Name">ranged-forall quantifier block</td>
+        <td data-label="Block">
+            <div class="mermaid">
+            graph LR
+                A["&forall;r"] ;
+            </div>
+        </td>
+        <td data-label="Type">
+            <code>t</code>[] &rarr; <code>int</code> &rarr; <code>int</code>
+            &rarr; <code>int</code> &rarr; <code>boolean</code> &rarr; <code>boolean</code> where t is a primitive type such as <code>int</code> or <code>float</code>. 
+            <br>It always quantifies over an array (the left most child).
+            The 2nd and 3rd children from the left represent the respectively the lower and upper bounds
+            of the subrange of the array indices over which we quantify.
+            <br>The 4th child represents an index of the array to quantify over.
+            <br/>The right most child represents the formula that should hold on all elements
+            of the array within the specified range.
+        </td>    
+        <td data-label="Example">
+            <div class="mermaid">
+            graph TD
+                B["&forall;r"] --> a
+                B --> LB["0"]
+                B --> UP["10"]        
+                B --> i
+                B --> C[>]
+                C --> D["[]"]
+                D --> D1[a]
+                D --> D2[i]
+                C --> 0
+            </div>
+            representing:
+            <br/><code>forall(a,i -&gt; imp(0&le; i && i &lt; 10, a[i]&gt; 0)</code> in Java,
+            <br/><code>(&forall; i : 0&le; i &lt; 10: a[i]&gt; 0)</code> in Math.
+        </td>
+    </tr>
+    
+    <tr>
+        <td data-label="Name">ranged-exist quantifier block</td>
+        <td data-label="Block">
+            <div class="mermaid">
+            graph LR
+                A["&exist;r"] ;
+            </div>
+        </td>
+        <td data-label="Type">
+            <code>t</code>[] &rarr; <code>int</code> &rarr; <code>int</code>
+            &rarr; <code>int</code> &rarr; <code>boolean</code> &rarr; <code>boolean</code> where t is a primitive type such as <code>int</code> or <code>float</code>. 
+            <br>It always quantifies over an array (the left most child).
+            The 2nd and 3rd children from the left represent the respectively the lower and upper bounds
+            of the subrange of the array indices over which we quantify.
+            <br>The 4th child represents an index of the array to quantify over.
+            <br/>The right most child represents the formula that should hold on at least one element
+            of the array within the specified range.
+        </td>    
+        <td data-label="Example">
+            <div class="mermaid">
+            graph TD
+                B["&exist;r"] --> a
+                B --> LB["0"]
+                B --> UP["10"]        
+                B --> i
+                B --> C[>]
+                C --> D["[]"]
+                D --> D1[a]
+                D --> D2[i]
+                C --> 0
+            </div>
+            representing:
+            <br/><code>exist(a,i -&gt; 0&le; i && i &lt; 10 && a[i]&gt; 0)</code> in Java,
+            <br/><code>(&exist; i : 0&le; i &lt; 10: a[i]&gt; 0)</code> in Math.
+        </td>
+    </tr>
+  </tbody>
+</table>            
+</div>    
+
+</body>
+</html>
