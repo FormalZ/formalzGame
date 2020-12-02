@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- mini.css -->
+<link rel="stylesheet" href="mini-default.min.css">
+
+<style>
+img.resize85 {
+  max-width:85%;
+  max-height:85%;
+}
+div.center {
+  text-align: center;
+  vertical-align: middle;
+}  
+</style>
+
+<!-- graph drawing lib -->
+<script src="mermaid.min.js"></script>
+<script>
+  mermaid.initialize({startOnLoad:true});
+</script>
+
+
+  
+<title>FormalZ User Manual</title>
+</head>
+
+<body>
+
+<header>
+  <a href="manualhome.html" class="button">Home</a>    
+  <a href="Sparks.html" class="button">Sparks</a>
+  <a href="Scanners.html" class="button">Programming Scanners</a>
+  <a href="Towers.html" class="button">Towers</a>
+  <a href="Score.html" class="button">Score</a>
+  <a href="Papers.html" class="button">Papers</a>  
+</header>
+    
+
+<div class="center"><h1>Game Idea</h1></div>
+
+
+<div class="card fluid">   
+<p>
+FormalZ is a CPU-defense game where you have to defend a computation unit (we will call it CPU) on a circuit board against hackers' attack. The CPU receives data packages (we will call them <a href="Sparks.html"><mark>sparks</mark></a>) through some conductive tracks, and in turn also output sparks for other components on the board.
+
+<br/><br/>
+
+The hackers have found a way to unexpectedly corrupt sparks on some conductive tracks: one input track leading into the CPU and one output track leading out from the CPU. Fortunately, the designer of the circuit board has anticipated this kind of malice and has built <a href="Scanners.html"><mark>scanners</mark></a> that can mark corrupted sparks. The scanners themselves cannot eliminate the sparks they mark. For this you need to put extra hardware on the circuit board called defense towers. These <a href="Towers.html"><mark>towers</towers></a> can neutralize marked sparks to prevent them from reaching the CPU as well as from leaving the CPU to contaminate other critical components. In a harder difficulty level, a single tower may not be enough to shoot down all marked sparks, or even to shoot down a single spark. So, you will need multiple towers to do the job. </p>
+
+  <div class="center">
+  <img class="resize85" src="images/game_shot1.png"  />
+  <br/>(TODO: update this screenshot, also rename blob to spark)
+  </div>
+
+<p><mark class="tertiary">Tutorial</mark>: 
+    there is a tutorial that you can start from the game starting screen.</P>
+</div>
+
+<div class="card fluid"> 
+<h3>Scanners</h3>
+
+<p>In each game, the CPU is designed to carry out a certain function described in the <mark class="tertiary">Desc tab</mark>. This description will include a so-called <mark class="tertiary">pre-condition</mark> and a <mark class="tertiary">post-condition</mark>. A pre-condition describes the kind of inputs should be sent to the CPU. A post-condition describes what kind of outputs the CPU will produce. An example of such a description:</P>
+
+<blockquote>
+If the input x is a positive integer, this CPU returns x+1.
+Use "retval" to denote the return value.
+</blockquote>
+    
+<p>(TODO: image with Desc-tab scrolled out)
+
+The above Desc describes a CPU that behaves as a function <code>f(int x)</code>. As the pre-condition, the function should only receive positive integer. As the post-condition, the function returns the value of <code>x+1</code>.</p>
+
+<p>Use the keys "d" and "a" to scroll up and down the Desc-tab to read a long description text.
+
+<p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-1"><img src="images/good spark small.png"/></div>
+    <div class="col-sm">
+         <div class = "card fluid"">
+         <p>A good input spark is an input spark that carries a data package satisfying the CPU's intended pre-condition as described in Desc. Likewise, a good output spark is an output spark that carries a data package satisfying the CPU's intended post-condition as described in Desc.</P>
+        </div>
+             
+    </div>   
+
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-1"><img class="center" src="images/bad spark small.png"/></div>
+    <div class="col-sm">
+        <div class = "card fluid"">
+        <p>A corrupted input spark (red) is an input spark that does not satisfy the CPU's intended pre-condition. Such a spark should be destroyed before it reaches the CPU. A corrupted output spark (red) is an output spark that does not satisfy the CPU's intended post-condition. Such a spark should be destroyed before it reaches the end point of its track. </P>
+       </div>  
+    </div>   
+  </div>
+</div>  
+</P>
+
+<p><a href="Towers.html"><mark>Towers</mark></a> can shoot at corrupted <a href="Towers.html"><mark>sparks</mark></a>. After enough damage, a spark is destroyed. However, towers only shoot at marked sparks. Scanners are used to mark sparks.
+The CPU board has two <a href="Scanners.html"><mark>scanners</mark></a>:</p>
+
+
+<p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-1"><img src="images/prescanner.png"/></div>  
+    <div class="col-sm">
+         <div class = "card fluid"">
+             <p>The <mark class="tertiary">pre scanner</mark> is used to mark input sparks that flow into the CPU.</P>
+         </div>
+    </div>   
+
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-1"><img src="images/postscanner.png"/></div>  
+    <div class="col-sm">
+        <div class = "card fluid"">
+            <p>The <mark class="tertiary">post scanner</mark> is used to mark output sparks that flow out from the CPU.</P>
+        </div>
+    </div>   
+  </div>
+</div>  
+</P>
+
+<p>
+You must program both scanners. The pre-scanner must be programmed to implement the CPU's intended pre-condition (as in the Desc), and the post-scanner its post-condition. Once programmed, a scanner will mark sparks whose data packages do not satisfy the programmed formula. </p>
+
+<blockquote>
+    For example if a pre-scanner is programmed with: 
+
+  <div class="center">
+  <div class="mermaid">
+  graph TD
+      Begin --> B[&gt;]
+      B-->x
+      B-->0;
+  </div>
+  </div>
+
+then all input sparks representing non-positive x will be marked.
+</blockquote>
+
+<p>
+If the scanners are correctly marked, they will only mark red (corrupted) sparks and leave blue (good) sparks unmarked. This is good.
+
+<br/><br/>
+
+If incorrectly programmed, some corrupted sparks would escape marking, and therefore would escape the defense towers as well. What can also happen is that the scanners incorrectly mark good sparks, causing them to be shot down by your towers.</p>
+
+</div>
+
+<div class="card fluid">  
+<h3>Towers</h3>     
+    
+<p>There are various types of <a href="Towers.html"><mark>towers</mark></a> with different strength and range. There are also various <a href="Towers.html"><mark>upgrades</mark></a> available. Every tower can be upgraded once. Do watch out that towers and upgrades cost money. If you run out of funds, you will not be able to purchase more tower, nor can you reprogram the scanners. If this happens, try to sell some of your towers (unfortunately, you can't sell them for the same price as you bought them).</P>    
+</div>    
+
+</body>
+</html>

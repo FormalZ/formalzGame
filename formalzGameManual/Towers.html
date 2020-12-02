@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- mini.css -->
+<link rel="stylesheet" href="mini-default.min.css">
+<style>
+img.resize85 {
+  max-width:85%;
+  max-height:85%;
+}
+div.center {
+  text-align: center;
+  vertical-align: middle;
+}  
+</style>
+
+
+<title>FormalZ User Manual</title>
+</head>
+
+<body>
+<header>
+  <a href="manualhome.html" class="button">Home</a>    
+  <a href="Sparks.html" class="button">Sparks</a>
+  <a href="Scanners.html" class="button">Programming Scanners</a>
+  <a href="Towers.html" class="button">Towers</a>
+  <a href="Score.html" class="button">Score</a>
+  <a href="Papers.html" class="button">Papers</a>  
+</header>
+    
+<div class="center"><h1>Defense Towers</h1></div>
+
+<div class="card fluid">    
+  <p>There are different types of towers, some with <mark class="tertiary">adjustable targeting mode</mark>, some can <mark class="tertiary">shoot at multiple targets</mark>. A tower can also be upgraded: a <mark class="tertiary">boost upgrade</mark> improves a tower's statistics, whereas <mark class="tertiary">effect upgrade</mark> adds an effect. Only one upgrade can be applied per tower.
+  </p>
+  
+<div class="container">
+  <div class="row">
+    <div class="col-sm-1"><img src="images/tower singleshot small.png"/></div>
+    <div class="col-sm">
+         <div class = "card fluid"">
+         <p><mark class="tertiary">Singleshot Tower</mark> The cheapest tower you can get. Also the fastest.</P>
+        </div>
+             
+    </div>   
+
+  </div> 
+  <div class="row">
+    <div class="col-sm-1"><img class="center" src="images/tower multishot small.png"/></div>
+    <div class="col-sm">
+        <div class = "card fluid"">
+        <p><mark class="tertiary">Multishot Tower</mark> Weaker power, but will shoot all marked sparks within its range. </P>
+       </div>  
+    </div>   
+  </div>
+  <div class="row">
+    <div class="col-sm-1"><img class="center" src="images/tower circle small.png"/></div>
+    <div class="col-sm">
+        <div class = "card fluid"">
+        <p><mark class="tertiary">Circle Tower</mark> Will shoot projectiles in 8 directions. Slightly more powerful than multishot power, but also shorter range. </P>
+       </div>  
+    </div>   
+  </div>  
+  <div class="row">
+    <div class="col-sm-1"><img class="center" src="images/tower pierce small.png"/></div>
+    <div class="col-sm">
+        <div class = "card fluid"">
+        <p><mark class="tertiary">Pierce Tower</mark> A more expensive variant of the singleshot tower with almost twice its range. It is twice slower though. </P>
+       </div>  
+    </div>   
+  </div>  
+  <div class="row">
+    <div class="col-sm-1"><img class="center" src="images/tower sniper small.png"/></div>
+    <div class="col-sm">
+        <div class = "card fluid"">
+        <p><mark class="tertiary">Sniper Tower</mark> A long range tower with deadly power. Do watch your funds since this power is expensive. </P>
+       </div>  
+    </div>   
+  </div>
+      
+</div>  
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Tower</th>
+      <th>Power</th>
+      <th>Range</th>
+      <th>Speed</th>
+      <th>Extra</th>
+      <th>Price</th>            
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Tower"><b>Singleshot tower</b></td>
+      <td data-label="Power">5</td>
+      <td data-label="Range">80</td>
+      <td data-label="Speed">2</td>
+      <td data-label="Extra">adjustable targeting mode</td>
+      <td data-label="Price">300</td>
+    </tr>
+    <tr>
+      <td data-label="Tower"><b>Multishot tower</b></td>
+      <td data-label="Power">2</td>
+      <td data-label="Range">80</td>
+      <td data-label="Speed">1.43</td>
+      <td data-label="Extra">can shoot multiple targets</td>
+      <td data-label="Price">400</td>
+    </tr>
+    <tr>
+      <td data-label="Tower"><b>Circle tower</b></td>
+      <td data-label="Power">3</td>
+      <td data-label="Range">60</td>
+      <td data-label="Speed">1.25</td>
+      <td data-label="Extra">can shoot multiple targets</td>
+      <td data-label="Price">400</td>
+    </tr>
+    <tr>
+      <td data-label="Tower"><b>Pierce tower</b></td>
+      <td data-label="Power">5</td>
+      <td data-label="Range">140</td>
+      <td data-label="Speed">1</td>
+      <td data-label="Extra">adjustable targeting mode</td>
+      <td data-label="Price">500</td>
+    </tr>
+    <tr>
+      <td data-label="Tower"><b>Sniper tower</b></td>
+      <td data-label="Power">20</td>
+      <td data-label="Range">500</td>
+      <td data-label="Speed">0.2</td>
+      <td data-label="Extra">adjustable targeting mode</td>
+      <td data-label="Price">1000</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>    
+
+<div class="card fluid"> 
+<h3>Targeting mode</h3>
+
+<p>Singleshot, Pierce, and Sniper towers allow you to adjust its targeting mode:
+
+<ul>
+<li><b>Closest</b> : the tower will target the closest marked spark.</li>
+
+<li><b>First</b> : the tower will target the oldest marked spark in its range (so, the one that first entered the range).</li>
+
+<li><b>Last</b> : the tower will target the most recent marked spark in its range (so, the one that last entered the range).</li>
+
+<li><b>Weakest</b> : the tower will target the weakest spark in its range.</li>
+
+<li><b>Strongest</b> : the tower will target the strongest spark in its range.</li>
+</ul>
+</p>
+
+</div> 
+
+<div class="card fluid"> 
+<h3>Boost upgrade</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tower</th>
+      <th>Power</th>
+      <th>Range</th>
+      <th>Speed</th>
+      <th>Price</th>            
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Tower"><b>Boosted Singleshot tower</b></td>
+      <td data-label="Power">6(+1)</td>
+      <td data-label="Range">100(+20)</td>
+      <td data-label="Speed">2</td>
+      <td data-label="Price">+200</td>
+    </tr>
+    <tr>
+      <td data-label="Tower"><b>Boosted Multishot tower</b></td>
+      <td data-label="Power">2.5(+0.5)</td>
+      <td data-label="Range">80</td>
+      <td data-label="Speed">1.66 (+0.23)</td>
+      <td data-label="Price">+200</td>
+    </tr>
+    <tr>
+      <td data-label="Tower"><b>Boosted Circle tower</b></td>
+      <td data-label="Power">3</td>
+      <td data-label="Range">60</td>
+      <td data-label="Speed">1.66 (+0.41), shooting in 12(+4) directions.</td>
+      <td data-label="Price">+200</td>
+    </tr>
+    <tr>
+      <td data-label="Tower"><b>Boosted Pierce tower</b></td>
+      <td data-label="Power">5</td>
+      <td data-label="Range">180(+40)</td>
+      <td data-label="Speed">1.11(+0.11)</td>
+      <td data-label="Price">+200</td>
+    </tr>
+    <tr>
+      <td data-label="Tower"><b>Sniper tower</b></td>
+      <td data-label="Power">22(+2)</td>
+      <td data-label="Range">500</td>
+      <td data-label="Speed">0.21 (+0.01)</td>
+      <td data-label="Price">+200</td>
+    </tr>
+  </tbody>
+</table>      
+</div>   
+
+<div class="card fluid"> 
+<h3>Effect upgrade</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tower</th>
+      <th>Effect</th>
+      <th>Desc</th>
+      <th>Appearance</th>
+      <th>Price</th>            
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Tower"><b>Singleshot tower</b></td>
+      <td data-label="Effecr"><b>bomb</b></td>
+      <td data-label="Desc">Turn the targeted spark to a bomb that deals damage to other marked sparks around it when it dies.</td>
+      <td data-label="Appearance">darker <br/><img src="images/good bomb spark small.png"/> <img src="images/bad bomb spark small.png"/></td>
+      <td data-label="Price">+200</td>
+    </tr>
+    <tr>
+      <td data-label="Tower"><b>Multishot tower</b></td>
+      <td data-label="Effecr"><b>poison</b></td>
+      <td data-label="Desc">Will poison the targeted spark to take damage over time.</td>
+      <td data-label="Appearance">spinning green <br/><img src="images/good poisoned spark small.png"/> <img src="images/bad poisoned spark small.png"/></td>
+      <td data-label="Price">+200</td>
+    </tr>
+    <tr>
+      <td data-label="Tower"><b>Circle tower</b></td>
+      <td data-label="Effecr"><b>support</b></td>
+      <td data-label="Desc">Increase the range of other towers within its range.</td>
+      <td data-label="Appearance"></td>
+      <td data-label="Price">+200</td>
+    </tr>
+    <tr>
+      <td data-label="Tower"><b>Pierce tower</b></td>
+      <td data-label="Effecr"><b>slow</b></td>
+      <td data-label="Desc">Will slow the targeted spark.</td>
+      <td data-label="Appearance">green <br/><img src="images/good slowed spark small.png"/> <img src="images/bad slowed spark small.png"/></td>
+      <td data-label="Price">+200</td>
+    </tr>
+    <tr>
+      <td data-label="Tower"><b>Sniper tower</b></td>
+      <td data-label="Effecr"><b>weaken</b></td>
+      <td data-label="Desc">Will weaken the targeted spark so that it takes more damage when shot at.</td>
+      <td data-label="Appearance">darker blue <br/><img src="images/good weaken spark small.png"/> <img src="images/bad weaken spark small.png"/></td>
+      <td data-label="Price">+200</td>
+    </tr>    
+  </tbody>
+</table>  
+</div>      
+</body>
+</html>

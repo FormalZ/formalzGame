@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- mini.css -->
+<link rel="stylesheet" href="mini-default.min.css">
+
+
+<title>FormalZ User Manual</title>
+</head>
+
+<body>
+<header>
+  <a href="manualhome.html" class="button">Home</a>    
+  <a href="Sparks.html" class="button">Sparks</a>
+  <a href="Scanners.html" class="button">Programming Scanners</a>
+  <a href="Towers.html" class="button">Towers</a>
+  <a href="Score.html" class="button">Score</a>
+  <a href="Papers.html" class="button">Papers</a>  
+</header>
+
+<div class="center"><h1>Sparks</h1></div>
+
+<div class="card fluid"> 
+<p> Sparks represent data packages that come into the CPU (input sparks) and out from the CPU (output sparks). There are several types of sparks (for both input and output sparks). Some are common, some are rare: </p>   
+
+
+<p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-1"><img src="images/good spark small.png"/></div>
+    <div class="col-sm">
+         <div class = "card fluid"">
+         <p>A <mark class="tertiary">good spark</mark> (common). Scanners and towers should let this spark through undamaged.</P>
+        </div>
+             
+    </div>   
+
+  </div> 
+  <div class="row">
+    <div class="col-sm-1"><img class="center" src="images/bad spark small.png"/></div>
+    <div class="col-sm">
+        <div class = "card fluid"">
+        <p>A <mark class="tertiary">corrupted spark</mark> (common). You scanners should mark corrupted sparks, so that towers can kill them.</P>
+       </div>  
+    </div>   
+  </div>
+  <div class="row">
+    <div class="col-sm-1"><img class="center" src="images/virus spark small.png"/></div>
+    <div class="col-sm">
+        <div class = "card fluid"">
+        <p>A <mark class="tertiary">virus</mark> (rare). Virus is a dangerous corrupted spark that can disable your towers.</P>
+       </div>  
+    </div>   
+  </div>
+  <div class="row">
+    <div class="col-sm-1"><img class="center" src="images/firewall spark small.png"/></div>
+    <div class="col-sm">
+        <div class = "card fluid"">
+        <p>A <mark class="tertiary">firewall</mark> spark (rare). This special type of corrupted spark protects other sparks from being shot by towers.</P>
+       </div>  
+    </div>   
+  </div>
+</div>  
+</P>
+    
+<p>Scanners will mark sparks that do not meet their programmed conditions. Additionally towers can have upgrades that add effects on the sparks. Such an effect can only be applied to a spark that a tower shoots at (so, unmarked sparks will never get an effect).
+    
+<p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-1"><img src="images/good marked spark small.png"/></div>
+    <div class="col-sm">
+         <div class = "card fluid"">
+         <p>A <mark class="tertiary">marked good spark</mark>. Towers will shoot at it. This is <b>not</b> good.</P>
+        </div>
+             
+    </div>   
+
+  </div>
+  <div class="row">
+    <div class="col-sm-1"><img class="center" src="images/bad marked spark small.png"/></div>
+    <div class="col-sm">
+        <div class = "card fluid"">
+        <p>A <mark class="tertiary">marked corrupted</mark> spark. Towers will shoot at it. This is good.</P>
+       </div>  
+    </div>   
+  </div>
+  <div class="row">
+    <div class="col-sm-1"><img class="center" src="images/good bomb spark small.png"/></div>
+    <div class="col-sm">
+        <div class = "card fluid"">
+        <p>A <mark class="tertiary">bomb good spark</mark>. Some tower effect can turn the spark shot by the tower to a bomb that damages other marked sparks when it dies. Turning a good spark to a bomb is <b>not</b> good.</P>
+       </div>  
+    </div>   
+  </div>
+  <div class="row">
+    <div class="col-sm-1"><img class="center" src="images/bad bomb spark small.png"/></div>
+    <div class="col-sm">
+        <div class = "card fluid"">
+        <p>A <mark class="tertiary">bomb corrupted spark</mark>. Some tower effect can turn the spark shot by the tower to a bomb that damages other marked sparks when it dies. Turning a corrupted spark to a bomb is good.</P>
+       </div>  
+  </div>   
+  <div class="row">
+      <div class="col-sm-1"><img class="center" src="images/good slowed spark small.png"/></div>
+      <div class="col-sm">
+          <div class = "card fluid"">
+          <p>A <mark class="tertiary">slowed good spark</mark>. Some tower effect can slow the spark shot by the tower. Slowing a good spark is <b>not</b> good.</P>
+         </div>  
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-sm-1"><img class="center" src="images/bad slowed spark small.png"/></div>
+      <div class="col-sm">
+          <div class = "card fluid"">
+          <p>A <mark class="tertiary">slowed corrupted spark</mark>. Some tower effect can slow the spark shot by the tower. Slowing a corrupted spark is good.</P>
+         </div>  
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-sm-1"><img class="center" src="images/good poisoned spark small.png"/> spinning</div>
+      <div class="col-sm">
+          <div class = "card fluid"">
+          <p>A <mark class="tertiary">poisoned good spark</mark>. Some tower effect can poison the spark shot by the tower. Poisoning a good spark is <b>not</b> good.</P>
+         </div>  
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-sm-1"><img class="center" src="images/bad poisoned spark small.png"/> spinning</div>
+      <div class="col-sm">
+          <div class = "card fluid"">
+          <p>A <mark class="tertiary">poisoned corrupted spark</mark>. Some tower effect can poison the spark shot by the tower. Poisoning a corrupted spark is good.</P>
+         </div>  
+      </div>
+  </div>  
+</div>  
+</P>        
+</p>    
+</div>    
+</body>
+</html>
